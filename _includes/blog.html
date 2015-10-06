@@ -19,11 +19,11 @@
         <div class='row'>
           <div class='col-md-12'>
             <p class="small">
-              <span class='linea-pin' title='published'></span>
-              posted at
-              {{ site.posts.first.date | date: "%B %d, %Y" }}.
-              <span class='linea-tag' title='published'></span>
-              tagged
+              <span class='linea-pin' title='Posted at'></span>
+              {{ site.posts.first.date | date: "%B %d, %Y" }}
+              {% if site.posts.first.tags.size > 0 %}
+                <span class='linea-tag' title='Tagged with'></span>
+              {% endif %}
               {% for tag in site.posts.first.tags %}
                 <a href="/tag/{{ tag }}">{{ tag }}{% if !forloop.first %}, {% endif %}</a>
               {% endfor %}
