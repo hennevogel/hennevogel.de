@@ -1,0 +1,15 @@
+$ms-base: 1em;
+$ms-range:
+  1.1   20em,
+  1.333 60em;
+
+@import 'modular-scale';
+
+#post {
+  p {
+    @include ms-respond(font-size, 1);
+  }
+  h1 {
+    @include ms-respond(font-size, 8);
+  }
+}

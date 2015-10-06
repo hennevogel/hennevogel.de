@@ -1,0 +1,15 @@
+# Site settings
+permalink: :title.html
+encoding: utf-8
+# Build settings
+markdown: kramdown
+gems: [ bootstrap-sass, jekyll-haml, jekyll-archives ]
+jekyll-archives:
+  enabled: [tags]
+defaults:
+  -
+    scope:
+      path: "" # an empty string here means all files in the project
+      type: "posts" # previously `post` in Jekyll 2.2.
+    values:
+      layout: "post"

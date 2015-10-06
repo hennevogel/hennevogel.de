@@ -1,0 +1,32 @@
+// For the media queries
+@import "bootstrap/variables";
+
+#hero {
+  $hero-height: 550px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("/images/schlepper.jpg");
+  overflow: hidden;
+  display: block;
+  width: 100%;
+  height: $hero-height;
+  #callout {
+    // background-color: rgba(0,0,0,.65);
+    height: $hero-height;
+    color: #2F4F4F;
+    h2 {
+      padding-top: 180px;
+      font-family: reswysokrregular;
+      span {
+        background-color: #00EEEE;
+      }
+    }
+    @media (min-width: $screen-md-min) {
+      h2 { font-size: 3em; }
+    }
+    @media (min-width: 1201px) {
+      h2 { font-size: 4em; }
+    }
+  }
+}

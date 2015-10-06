@@ -1,0 +1,51 @@
+---
+layout: default
+---
+<section id="post">
+{% if page.image %}
+  <div id="post-header" style="background-image: url(/images/posts/{{ page.image }});">
+{% else %}
+  <div id="post-header" style="background-image: url(/images/posts/default.jpg);">
+{% endif %}
+  </div>
+  <div class='container'>
+    <div id="post-title">
+      <h1>
+        {{ page.title }}
+        <br>
+      </h1>
+      <p class="text-right">
+        <small>
+          published
+          {{ page.date | date: "%B %-d, %Y" }}
+        </small>
+      </p>
+    </div>
+  </div>
+  <div id="post-content">
+    <div class='container'>
+      <div class='row'>
+        <div class='col-md-8 col-md-offset-2'>
+          {{ content }}
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-md-3'>
+        </div>
+        <div class='col-md-3'>
+          <span class='linea-comment' title='comments'></span>
+          {% if page.author %} • {{ page.author }}{% endif %}
+        </div>
+        <div class='col-md-6'>
+          <span class='linea-tags' title='tags'></span>
+          &nbsp;
+          photoshop,
+          tutorials,
+          graphics,
+          gimp,
+          shades
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

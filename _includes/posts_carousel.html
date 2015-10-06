@@ -1,0 +1,36 @@
+<div class='row'>
+  <div class='col-md-12 text-center'>
+    <span id="post-carousel-up" class="glyphicon glyphicon-chevron-up" alt="previous" title="previous"></span>
+    <hr />
+  </div>
+</div>
+
+<div id="post-carousel">
+  {% for post in site.posts offset:1 %}
+    <div class="post">
+      <div class='row'>
+        <div class='col-md-4'>
+          {% if post.image %}
+            <img class='img-circle img-center' src="/images/posts/{{ post.image }}" width="100px" height="100px" />
+          {% else %}
+            <img class='img-circle img-center' src="/images/circle.png" width="100px" height="100px" />
+          {% endif %}
+        </div>
+        <div class='col-md-8'>
+          <h3>
+            <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+          </h3>
+          <span class='linea-pin'></span>
+          {{ post.date | date: "%b %-d, %Y" }}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class='row'>
+  <div class='col-md-12 text-center'>
+    <hr />
+    <span id="post-carousel-down" class='glyphicon glyphicon-chevron-down' alt="next" title="next"></span>
+  </div>
+</div>

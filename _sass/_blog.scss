@@ -1,0 +1,14 @@
+#blog {
+  padding: 60px 0 60px 0;
+  #feature {
+    .thumbnail {
+      margin-bottom: 20px;
+    }
+  }
+  #post-carousel-down, #post-carousel-up {
+    cursor: pointer;
+  }
+  .post {
+    margin: 10px 0 10px 0;
+  }
+}

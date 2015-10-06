@@ -1,0 +1,20 @@
+#about {
+  padding: 60px 0 60px 0;
+
+  #callout {
+    font-size: 7em;
+  }
+
+  #headline {
+    padding-top: 11px;
+  }
+
+  #pie {
+    padding-top: 28px;
+  }
+  #chart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

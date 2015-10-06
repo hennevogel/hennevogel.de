@@ -1,0 +1,53 @@
+// For the media queries
+@import "bootstrap/variables";
+
+#post {
+  #post-header {
+    min-height: 300px;
+    color: #79BD8F;
+    background-color: #333;
+    background-attachment: scroll;
+    background-position: center center;
+    background-repeat: none;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+  }
+  @media(min-width: $screen-xs-min) {
+    #post-header {
+      min-height: 600px;
+    }
+  }
+
+  #post-title {
+    background-color: rgba(0, 0, 0,.70);
+    position: relative;
+    bottom: 54px;
+    color: #fff;
+    padding: 0 10px;
+  }
+
+  #post-content {
+    margin-top: -50px;
+    padding-bottom: 30px;
+    img {
+      @include img-responsive;
+    }
+  }
+  @media (min-width: $screen-xs-min) {
+    #post-title {
+      bottom: 132px;
+    }
+  }
+  @media (min-width: $screen-sm-min) {
+    #post-content {
+      margin-top: -100px;
+    }
+  }
+  @media (min-width: $screen-md-min) {
+    #post-title {
+      bottom: 145px;
+    }
+  }
+}
