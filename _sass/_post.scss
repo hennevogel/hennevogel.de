@@ -34,7 +34,13 @@
     img {
       @include img-responsive;
     }
+    table {
+      @extend .table;
+      @extend .table-striped;
+      @extend .table-hover;
+    }
   }
+
   @media (min-width: $screen-xs-min) {
     #post-title {
       bottom: 132px;
