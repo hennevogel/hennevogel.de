@@ -11,6 +11,7 @@ $brand-info: #5bc0de;
 $brand-warning: #f0ad4e;
 $brand-danger: #d9534f;
 $icon-font-path: "/fonts/";
+$navbar-height: 60px;
 
 //
 // Bootstrap components
@@ -34,12 +35,12 @@ $icon-font-path: "/fonts/";
 @import "bootstrap/buttons";
 
 // Components
-// @import "bootstrap/component-animations";
+@import "bootstrap/component-animations";
 // @import "bootstrap/dropdowns";
 @import "bootstrap/button-groups";
 @import "bootstrap/input-groups";
-// @import "bootstrap/navs";
-// @import "bootstrap/navbar";
+@import "bootstrap/navs";
+@import "bootstrap/navbar";
 // @import "bootstrap/breadcrumbs";
 // @import "bootstrap/pagination";
 // @import "bootstrap/pager";
@@ -72,10 +73,15 @@ html {
   min-height: 100%;
 }
 body {
-  /* Margin bottom by footer height */
+  /* padding by navigation height */
+  padding-top: $navbar-height;
+  /* margin by footer height */
   margin-bottom: 400px;
 }
 
+.navbar-brand {
+  padding: 15px 15px;
+}
 
 #footer {
   position: absolute;
@@ -84,7 +90,7 @@ body {
   /* Set the fixed height of the footer here */
   height: 400px;
   color: #F8F8FF;
-  background-color: #1F1F1F;
+  background-color: #222;
 }
 
 @media (min-width: $screen-sm-min ) and (max-width: $screen-sm-max) {
