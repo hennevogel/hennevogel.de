@@ -1,0 +1,29 @@
+---
+layout: default
+---
+<div class="container">
+  <div id="posts">
+    {% for post in paginator.posts %}
+      <div class="row">
+        <div class="col-md-4">
+          <a href="#">
+            <h3><a href="{{ site.siteurl }}{{ post.url }}">{{ post.title }}</a></h3>
+            <img class='img-responsive' src='/images/posts/{{ post.image }}'>
+          </a>
+        </div>
+        <div class="col-md-8">
+          <p>{{ post.content | truncatewords:300 | strip_html }}</p>
+        </div>
+      </div>
+    {% endfor %}
+    <div class="row">
+      <div class="col-md-12">
+        <div class="pagination text-center">
+          {% if paginator.next_page %}
+            <a href="{{ paginator.next_page_path }}" class="next">Next</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
