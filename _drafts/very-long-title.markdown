@@ -1,6 +1,5 @@
 ---
 title: this is a very long title that should line break my ass and if its even longer then even more until it really looks ugly unless your a good web developer
-image: samuel.jpg
 tags: ruby rails
 ---
 
@@ -19,6 +18,8 @@ look like:
 >
 > They can span multiple paragraphs,
 > if you like.
+
+<div id="more"></div>
 
 An h2 header
 ------------

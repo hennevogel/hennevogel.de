@@ -1,0 +1,289 @@
+---
+image: herd_of_cats.jpg
+tags: obs linux packaging
+title:	'Distributing Free Software: Herding Cats'
+---
+
+<p>
+  The basic challenge of distributing Free Software is compiling that awesome
+  open source code into machine code for different Linux distributions so it's
+  easily consumable for users. Sounds simple, but it isn't. If you look at the
+  dependencies of a typical Free Software project you will find thousands of
+  other projects in the stack. They build on top of each other, have functional
+  dependencies, sometimes they are interdependent, they conflict with each other
+  and what not. In short: Building Free Software is like herding cats. And
+  rightfully users of the software expect a steady, well behaved, streamlined
+  herd of cats! The <a href="http://openbuildservice.org">Open Build Service (OBS)</a>
+  is the tool which makes this possible, it helps Free Software distributors to
+  <strong>automatically and consistently build binary packages</strong>
+  from free and open source code.
+</p>
+
+<div id="more"></div>
+
+<p>
+  It goes like this: Engineers upload source code and build instructions to the
+  OBS and the system compiles that into binary packages for different
+  <a href="https://en.wikipedia.org/wiki/Linux_distribution">distribution versions</a>
+  and different <a href="https://en.wikipedia.org/wiki/Computer_architecture">CPU architectures</a>.
+  The build instructions say how to compile the source code into machine code,
+  defines the dependencies and the conflicting capabilities the software has in
+  relation to other software, itemizes which files are needed to run it, and a
+  whole lot of other meta data. The job of the OBS is to interpret all this
+  information, to provide a build environment matching the requirements, the
+  execution of the build, and of course the reporting of the outcome.
+</p>
+
+<p>
+  The end result are multiple binary packages out of one single source. The twist
+  is: If other software depends on the package in some way, the OBS will trigger
+  a rebuild of the depending package afterward. This ensures that changes
+  propagate through the whole stack and that the user gets a consistent product
+  to install.
+</p>
+
+<h2>Updates: Nobody is perfect.</h2>
+
+<p>
+  <img alt="A black swan" src="/images/posts/black_swan.jpg" class="img-responsive center-block">
+</p>
+<p class="text-right">
+  <small>
+    <a href="http://creativecommons.org/licenses/by-sa/2.0/" title="Attribution-ShareAlike License">Some rights reserved</a>
+    by <a href="http://www.geograph.org.uk/profile/3972">Colin Smith</a>
+  </small>
+</p>
+
+<p>
+  Sadly, software is sometimes defective and people make mistakes.  Nobody is
+  perfect.  That's why the second basic service a Free Software distributor
+  delivers to its users is the art of exchanging pieces without breaking the
+  whole: Updates. Your distributor does not want to interrupt you in going about
+  your business, and to be able to do this he needs to <strong>reproduce the
+  software builds</strong> at any given time in the long lifetime of the software.
+</p>
+
+<p>
+  The OBS helps distributors to achieve this by tracking who has made changes,
+  when changes are made, and what has changed. The OBS also helps by utilizing a
+  clean, virtualized build environment. This is how it goes: When an engineer
+  triggers a build in the OBS by changing the software in it, the system saves
+  the current state, gathers all the dependencies and kicks off a virtualized
+  environment to execute the build. As the information on how to assemble the
+  build environment is contained in the software and as all dependent software
+  gets rebuilt too it makes every build reproducible.
+</p>
+
+<p>
+  And if something is reproducible it is predictable and that is what distributors
+  aim for. If you can predict how all of the software projects in your stack
+  influence each other, you can make sure that a change to a single piece can be
+  managed through all of its dependencies, ensuring that the whole system of
+  software continues to work after a change. This is how the OBS helps you as a
+  user because updates from the OBS don't get in the way of your business.
+</p>
+
+<h2>Collaboration: Unity is strength</h2>
+
+<p>
+  <img src="https://farm4.staticflickr.com/3328/5755219051_31e445fdd5_o.png" alt="Collaborate" class="img-responsive center-block">
+</p>
+<p class="text-right">
+  <small>
+    <a href="http://creativecommons.org/licenses/by-sa/2.0/" title="Attribution-ShareAlike License">Some rights reserved</a>
+    by <a href="https://secure.flickr.com/photos/opensourceway/">opensourceway</a>
+  </small>
+</p>
+
+<p>
+  Now the software isn't the only herd of cats that needs taming. Each of the
+  thousands of software projects is maintained by one or more developers that
+  collaborate with each other, that's a whole bunch of awesome people! And this is
+  the third basic challenge a Free Software distributor solves for its users. It
+  brings together people who <strong>collaborate on the integration of free and
+  open source software</strong>.
+</p>
+
+<p>
+  The OBS formalizes this collaboration into work flows that all engineers
+  utilize. Everybody is using the same way to submit new software, to update
+  existing software to a new version, to submit bug fixes and features. Everyone
+  is using the same means to branch, study, change, and improve the software.
+</p>
+
+<p>
+  OBS simply helps Free Software engineers to harness the power of the open
+  source development model. And this also helps the users because they get a
+  tightly integrated software solution.
+</p>
+
+<h2>There is more...</h2>
+
+<p>
+  This is how Free Software distributors utilizes the Open Build Service for
+  the benefit of the users: Build binary packages for a wide range of
+  distributions and architectures from source code in an automatic, consistent,
+  reproducible and collaborative way.
+</p>
+<p>
+  But there is more: OBS itself is free software. You can run, copy,
+  distribute, study, change and improve it. The source code and the developers are
+  on <a href="https://github.com/openSUSE/open-build-service">github</a>. As Free
+  Software, it is able to keep up with the ever-evolving ecosystem, which
+  constantly produces new distributions, new package formats, new architectures,
+  software, standards and tools. At the current time, OBS supports more than 20
+  different distributions, half a dozen architectures and three different package
+  formats. It can cryptographically sign your software and products, different
+  instances of OBS can connect to each other and OBS can be used in conjunction
+  with source code revision systems like git/github in continuous integration work
+  flows.
+</p>
+
+<h2>Do. Or do not. There is no try.</h2>
+<p>
+  <img src="https://farm3.staticflickr.com/2375/2797865377_eae687f4c4_o_d.jpg" alt="The Master" class="img-responsive center-block">
+</p>
+<p class="text-right">
+  <small>
+    <a href="https://creativecommons.org/licenses/by/2.0/" title="Attribution 2.0 Generic License">Some rights reserved</a>
+    by <a href="https://www.flickr.com/photos/idovermani/">Dov Harrington</a>
+  </small>
+</p>
+
+<p>
+  Enough talk, let's get practical! You have Free Software that you want to
+  make available? Here is how you can utilize the
+  <a href="https://build.opensuse.org/">Open Build Service reference server</a>
+  which is freely available for developers to build packages for the most popular
+  Linux distributions including openSUSE, Debian, Fedora, Ubuntu, Arch, Red Hat
+  Enterprise Linux and SUSE Linux Enterprise.
+</p>
+
+<h2>Build a package</h2>
+
+<p>
+  Building packages is the most basic feature of the OBS. All you need to for
+  that is a modern web browser (we recommend
+  <a href="http://getfirefox.com">Firefox</a>) and an account on the
+  <a href="https://build.opensuse.org/">OBS reference server</a>.
+</p>
+
+<ol>
+  <li>
+    Create an account &amp; log in<br>
+    Point your browser to <a href="https://build.opensuse.org">https://build.opensuse.org</a>
+    and click the <strong><em>Sign Up</em></strong> button in the upper right
+    corner. Fill out the required information (please take note of
+    <a href="https://www.suse.com/company/policies/privacy/">SUSE's Privacy Statement</a>)
+    and create your account. Once you're account is created, log into
+    the OBS (the <strong><em>Log In</em></strong> link is also in the upper right
+    corner).
+  </li>
+  <li>
+    Create your home project<br>
+    Every user in the OBS has it's own little space for building packages, called a
+    <em>home project</em>, it always has the name of <em>home:USERNAME</em>, mine is
+    <a href="https://build.opensuse.org/project/show/home:hennevogel">home:hennevogel</a>.
+    You can navigate to your <em>home project</em> with the link in the, you've
+    guessed it, upper right corner. As this is your first log in you have to create
+    it and that's why you are greeted by a form, you can give your <em>home
+    project</em> a nice title and a description of it's content and once you're
+    done, click on <strong><em>Create Project</em></strong>. In the next step you're
+    greeted by your new shiny own little space on the OBS reference server to build
+    your packages. Hooray!
+    <img src="https://raw.githubusercontent.com/hennevogel/obs-tutorial/screenshots/02.home-project.png" alt="Your OBS home project">
+    An OBS <em>project</em> can contain zero or more OBS <em>packages</em>. For
+    now your <em>home project</em> is empty, that's boring so let's create your
+    first package!
+  </li>
+  <li>
+    Create a package<br>
+    Find the <em>Create package</em> link and click on it. Another form creeps up
+    on you. Fill in the information like this:
+    <pre>
+      <strong>Name</strong>: ctris.
+      <strong>Title</strong>: Console based Tetris clone.
+      <strong>Description</strong>: A colorized, small and flexible Tetris clone for
+      the console.
+    </pre>
+    Once you're done press <strong><em>Save changes</em></strong>. This
+    will lead you to your new package.
+    <img src="https://raw.githubusercontent.com/hennevogel/obs-tutorial/screenshots/04.empty_package.png" alt="An empty OBS package">
+    An OBS package can contain multiple <em>files</em> that are needed to build it.
+    But for now your <em>ctris package</em> is empty. Let's also change this and
+    add some files.
+  </li>
+  <li>
+    Upload files<br>
+    Typically an OBS <em>package</em> consists of two parts: The source code archive
+    and the build description. As this is a tutorial on how to use the OBS and not
+    about getting you've started with packaging we have prepared some files for you.
+    Please download the
+    <a href="http://www.hackl.dhs.org/data/download/download.php?file=ctris-0.42.tar.bz2">source code archive</a>
+    and the
+    <a href="https://raw.githubusercontent.com/hennevogel/obs-tutorial/master/ctris.spec">RPM build description</a>
+    onto your computer. Then use the <strong><em>Add file</em></strong> dialog to
+    upload them to your OBS package. In the end the <em>Source Files</em> box should
+    look like this
+    <img src="https://raw.githubusercontent.com/hennevogel/obs-tutorial/screenshots/05.filled_package.png" alt="enter image description here">
+    Now your OBS package contains everything it needs to produce RPM packages that
+    your users could install, however nothing has happened yet! Did you notice
+    the <em>Build Results</em> box next to your files? It tells you about the last
+    missing piece you need: The project this package belongs to currently has no
+    <em>build targets</em> defined. Alright, let's change that, click on the
+    <strong><em>build targets</em></strong> link in that box!
+  </li>
+  <li>
+    Add Build Targets<br>
+    <strong><em>Build Targets</em></strong> are basically the Linux distributions
+    that you want the package to be available for. Like Debian or Arch Linux. On
+    the OBS reference server you're greeted by this impressive collection of build
+    targets to choose from:
+    <img src="https://raw.githubusercontent.com/hennevogel/obs-tutorial/screenshots/06.add_build_target.png" alt="Distributions to build for in the OBS">
+    For this tutorial let's pick some RPM based distributions: openSUSE 13.2 and
+    Fedora 22. After you have added the <strong><em>build targets</em></strong>
+    you are redirected to the configuration for them, don't bother with that (yet)
+    and click straight on the <strong><em>Overview</em></strong> link in the upper
+    left corner.
+  </li>
+  <li>
+    Building<br>
+    Now the magic happens! Do you notice the <strong><em>Build Results</em></strong>
+    box? If you did everything right it will have kicked of your first OBS build
+    already. Your <em>ctris</em> package will be in the state <em>scheduled</em>,
+    <em>building</em> or <em>succeeded</em>. If you click on those links the OBS
+    will take you to log file of this build which you can inspect, follow and
+    download. But log files are not what we are here for right? We want to download
+    and play <em>ctris</em>! Let's do that, click on the <strong><em>Overview</em></strong>
+    link again.
+  </li>
+  <li>
+    Download Binary Packages<br>
+    Once all four build targets are in the state <em>succeeded</em> you can click
+    on the <strong><em>Download Package</em></strong> link which will lead you to
+    this page that includes instructions on how to download and install the ctris
+    package for Fedora and openSUSE. Let those blocks fall!
+  </li>
+</ol>
+
+<p>
+  <img src="https://raw.githubusercontent.com/hennevogel/obs-tutorial/screenshots/07.download_package.png" alt="ctris package download page">
+</p>
+
+<p>
+  That's how you can build and distribute binary packages for a wide range of
+  distributions and architectures with the Open Build Service. Enjoy!
+</p>
+
+<blockquote>
+  <p>
+    Want to learn the more about software packaging? The Linux distributions have
+    great introductions to the
+    <a href="http://fedoraproject.org/wiki/How_to_create_an_RPM_package">RPM</a>,
+    <a href="https://wiki.debian.org/IntroDebianPackaging">DEB</a> and
+    <a href="https://wiki.archlinux.org/index.php/Creating_packages">PKGBUILD</a>
+    formats that you should review. The
+    <a href="https://github.com/hennevogel/obs-tutorial">tutorial github repository</a>
+    also contains build instructions for all kinds of different distributions.
+  </p>
+</blockquote>
