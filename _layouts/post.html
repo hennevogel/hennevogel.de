@@ -8,8 +8,8 @@ layout: default
   <div id="post-header" style="background-image: url(/images/posts/default.jpg);">
 {% endif %}
   </div>
-  <div class='container'>
-    <div id="post-title">
+  <div id="post-title">
+    <div class='container'>
       <h1>
         {{ page.title }}
         <br>
@@ -18,6 +18,20 @@ layout: default
         <small>
           published
           {{ page.date | date: "%B %-d, %Y" }}
+          {% if page.tags.size > 0 %}
+            <br />
+            in
+          {% endif %}
+          {% for tag in page.tags %}
+            <a href="/tag/{{ tag }}">
+              {{ tag }}
+            </a>
+              {% if forloop.size > 1  %}
+                {% unless forloop.last %}
+                ,&nbsp;
+                {% endunless %}
+              {% endif %}
+          {% endfor %}
         </small>
       </p>
     </div>
@@ -27,21 +41,6 @@ layout: default
       <div class='row'>
         <div class='col-md-8 col-md-offset-2'>
           {{ content }}
-        </div>
-      </div>
-      <div class='row'>
-        <div class='col-md-12'>
-          <span class='linea-comment' title='comments'></span>
-          {% if page.author %} • {{ page.author }}{% endif %}
-        </div>
-        <div class='col-md-6'>
-          <span class='linea-tags' title='tags'></span>
-          &nbsp;
-          photoshop,
-          tutorials,
-          graphics,
-          gimp,
-          shades
         </div>
       </div>
     </div>

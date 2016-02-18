@@ -1,7 +1,7 @@
 ---
 title: The path of the righteous man
 image: samuel.jpg
-tags: politics
+tags: politics whatever yeah
 ---
 
 My money's in that office, right? If she start giving me some bullshit about it
