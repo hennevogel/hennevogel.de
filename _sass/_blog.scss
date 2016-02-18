@@ -5,8 +5,10 @@
       margin-bottom: 20px;
     }
   }
-  #post-carousel-down, #post-carousel-up {
-    cursor: pointer;
+  #post-carousel {
+    .media {
+      padding: 10px 0 10px;
+    }
   }
   .post {
     margin: 10px 0 10px 0;

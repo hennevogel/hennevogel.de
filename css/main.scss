@@ -74,7 +74,7 @@ html {
 }
 body {
   /* padding by navigation height */
-  padding-top: $navbar-height;
+  padding-top: 73px;
   /* margin by footer height */
   margin-bottom: 400px;
 }
@@ -120,6 +120,7 @@ body {
 @import "hero";
 @import "blog";
 @import "about";
+@import "posts";
 @import "post";
 @import "hacks";
 @import "linea";
