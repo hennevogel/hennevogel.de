@@ -1,2 +1,1 @@
-# blog
-My Blog
+# [hennevogel.de](http://hennevogel.de)
