@@ -34,7 +34,7 @@
                 in
               {% endif %}
               {% for tag in site.posts.first.tags %}
-                <a href="/tag/{{ tag }}">{{ tag }}{% if !forloop.first %}, {% endif %}</a>
+                <a href="/blog/tag/{{ tag }}">{{ tag }}{% if !forloop.first %}, {% endif %}</a>
               {% endfor %}
             </p>
           </div>

@@ -8,6 +8,9 @@ redcarpet:
   extensions: ['footnotes', 'tables', 'no_intra_emphasis', 'autolink']
 jekyll-archives:
   enabled: [tags]
+  layout: tag
+  permalinks:
+    tag: '/blog/tag/:name/'
 defaults:
   - scope:
       path: ""

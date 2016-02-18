@@ -2,8 +2,8 @@
 layout: default
 ---
 
-<div id="posts" class="jscroll">
-  {% for post in paginator.posts %}
+<div id="posts">
+  {% for post in page.posts %}
     <article>
       <div class="container">
         <div class="row">
@@ -38,15 +38,4 @@ layout: default
       </div>
     </article>
   {% endfor %}
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="pagination text-center">
-          {% if paginator.next_page %}
-            <a href="{{ paginator.next_page_path }}" class="next">Next</a>
-          {% endif %}
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
