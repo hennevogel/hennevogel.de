@@ -11,7 +11,8 @@ $brand-info: #5bc0de;
 $brand-warning: #f0ad4e;
 $brand-danger: #d9534f;
 $icon-font-path: "/fonts/";
-$navbar-height: 60px;
+$navbar-height: 80px;
+$footer-height: 400px;
 
 //
 // Bootstrap components
@@ -73,40 +74,18 @@ html {
   min-height: 100%;
 }
 body {
-  /* padding by navigation height */
-  padding-top: 73px;
   /* margin by footer height */
-  margin-bottom: 400px;
-}
-
-.navbar-brand {
-  padding: 15px 15px;
-}
-
-#footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 400px;
-  color: #F8F8FF;
-  background-color: #222;
+  margin-bottom: $footer-height;
 }
 
 @media (min-width: $screen-sm-min ) and (max-width: $screen-sm-max) {
   body {
     margin-bottom: 250px;
   }
-  #footer {
-    height: 250px;
-  }
 }
 @media (min-width: $screen-md-min) {
   body {
     margin-bottom: 200px;
-  }
-  #footer {
-    height: 200px;
   }
 }
 
@@ -116,6 +95,13 @@ body {
   margin-right: auto;
 }
 
+.navbar-brand {
+  padding: 10px;
+}
+#logo {
+  width: $navbar-height * 2;
+}
+
 @import "syntax-highlighting";
 @import "hero";
 @import "blog";
@@ -123,5 +109,6 @@ body {
 @import "posts";
 @import "post";
 @import "hacks";
+@import "footer";
 @import "linea";
 @import "typography";
