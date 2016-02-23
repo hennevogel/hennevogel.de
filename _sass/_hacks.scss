@@ -1,8 +1,6 @@
 #hacks {
-  padding: $navbar-height 0 $navbar-height 0;
-
-  section {
-    padding: 30px 30px;
+  .hack {
+    padding: 60px 60px;
   }
-  section:nth-child(even) {background: #F7F7F7}
+  .hack:nth-child(even) {background: #F7F7F7}
 }

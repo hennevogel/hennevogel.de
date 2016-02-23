@@ -68,7 +68,6 @@ $footer-height: 400px;
 @import "bootstrap/utilities";
 @import "bootstrap/responsive-utilities";
 
-
 html {
   position: relative;
   min-height: 100%;
@@ -76,6 +75,10 @@ html {
 body {
   /* margin by footer height */
   margin-bottom: $footer-height;
+}
+
+section {
+  padding: $navbar-height 0 $navbar-height 0;
 }
 
 @media (min-width: $screen-sm-min ) and (max-width: $screen-sm-max) {
