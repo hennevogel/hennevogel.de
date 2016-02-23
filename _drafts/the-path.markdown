@@ -1,6 +1,6 @@
 ---
 title: The path of the righteous man
-image: samuel.jpg
+image: highway.jpg
 tags: politics whatever yeah
 ---
 
