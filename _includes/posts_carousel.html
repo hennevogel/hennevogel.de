@@ -8,29 +8,36 @@
     </div>
   </div>
 
-  {% for post in site.posts offset:1 limit:4 %}
-    <div class="media">
-      <div class="media-body">
-        <h4 class="media-heading">
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h4>
-        <p>
-          <small>
-            {% include post_meta.html date=post.date tags=post.tags %}
-          </small>
-        </p>
+  {% if site.posts.size > 1 %}
+    {% for post in site.posts offset:1 limit:4 %}
+      <div class="media">
+        <div class="media-body">
+          <h4 class="media-heading">
+            <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+          </h4>
+          <p>
+            <small>
+              {% include post_meta.html date=post.date tags=post.tags %}
+            </small>
+          </p>
+        </div>
       </div>
-    </div>
-  {% endfor %}
+    {% endfor %}
+  {% else %}
+    <h3 class="text-center">No other posts yet, sorry...</h3>
+  {% endif %}
+
 
   <div class='row'>
     <div class='col-md-12 text-center'>
       <hr />
-      <h3 class="text-right">
-        <a href="/blog">
-          Read all {{ site.posts.size }} posts »
-        </a>
-      </h3>
+      {% if site.posts.size > 1 %}
+        <h3>
+          <a href="/blog">
+            Read all {{ site.posts.size }} posts »
+          </a>
+        </h3>
+      {% endif %}
     </div>
   </div>
 </div>
