@@ -21,16 +21,20 @@
     <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="//oss.maxcdn.com/chart.js/1.0.2/Chart.min.js"></script>
     <script type="text/javascript" src="//oss.maxcdn.com/jquery.jscroll/2.2.4/jquery.jscroll.min.js"></script>
-    <script type="text/javascript" src="/js/chart.js"></script>
+    {% if page.path == 'index.html' %}
+      <script type="text/javascript" src="/js/chart.js"></script>
+    {% endif %}
 
-    <script type="text/javascript">
-    // content selector is used to extract the additional items
-    $('.jscroll').jscroll({
-        loadingHtml: '<p class="text-center"><img src="/images/loader.gif" alt="Loading" /></p>',
-        contentSelector: "#posts",
-        nextSelector: '.next:last',
-        debug: true
-    });
-    </script>
+    {% if paginator.next_page %}
+      <script type="text/javascript">
+        // content selector is used to extract the additional items
+        $('.jscroll').jscroll({
+          loadingHtml: '<p class="text-center"><img src="/images/loader.gif" alt="Loading" /></p>',
+          contentSelector: "#posts",
+          nextSelector: '.next:last',
+          debug: true
+        });
+      </script>
+    {% endif %}
   </body>
 </html>
