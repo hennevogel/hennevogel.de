@@ -1,0 +1,5 @@
+published {{ include.date | date_to_long_string }}
+{% if include.tags.size > 0 %} in {% endif %}
+{% for tag in include.tags %}
+  <a href="/blog/tag/{{ tag }}">{{ tag }}{% unless forloop.last %}, {% endunless %}</a>
+{% endfor %}

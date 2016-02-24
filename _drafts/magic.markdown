@@ -1,6 +1,5 @@
 ---
 title: Magic
-tags: magic
 ---
 
 Every great magic trick consists of three parts or acts. The first part is
