@@ -28,3 +28,7 @@ defaults:
 collections:
   hacks:
     output: true
+
+
+# https://github.com/jekyll/jekyll/issues/2938
+exclude: [vendor]
