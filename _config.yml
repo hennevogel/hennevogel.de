@@ -1,8 +1,6 @@
-# Site settings
 paginate: 4
 paginate_path: "/blog/page:num/"
 encoding: utf-8
-# Build settings
 markdown: redcarpet
 redcarpet:
   extensions: ['footnotes', 'tables', 'no_intra_emphasis', 'autolink']
@@ -31,4 +29,4 @@ collections:
 
 
 # https://github.com/jekyll/jekyll/issues/2938
-exclude: [vendor]
+exclude: [vendor, Gemfile, Gemfile.lock, README.md, bin, config]
