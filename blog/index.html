@@ -4,41 +4,7 @@ layout: default
 
 <section id="posts" class="jscroll">
   {% for post in paginator.posts %}
-    <article>
-      <div class="container">
-        <div class="col-md-8 col-md-offset-2">
-          <h2>
-            <a href="{{ site.siteurl }}{{ post.url }}">
-              {{ post.title }}
-            </a>
-          </h2>
-        </div>
-        <div class="row">
-          <div class="col-md-8 col-md-offset-2">
-            <a href="{{ site.siteurl }}{{ post.url }}">
-              {% if post.image %}
-                <img class='img-responsive img-rounded center-block' src='/images/posts/{{ post.image }}'>
-              {% else %}
-                <img class='img-responsive img-rounded center-block' src="http://lorempixel.com/g/750/382/technics?{{post.path}}">
-              {% endif %}
-            </a>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-8 col-md-offset-2">
-            <p class="text-muted">
-              published {{ post.date | date_to_long_string }}
-            </p>
-            <div class="lead">
-              {{ post.excerpt }}
-            </div>
-            <p class="text-right">
-              <a href="{{ site.siteurl }}{{ post.url }}#more">Continue reading...</a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </article>
+    {% include post.html %}
   {% endfor %}
   <div class="container">
     <div class="row">
