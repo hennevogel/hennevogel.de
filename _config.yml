@@ -15,8 +15,8 @@ defaults:
       type: "posts"
     values:
       layout: "post"
-      permalink: /blog/:title
-      excerpt_separator: <div id="more"></div> 
+      permalink: /blog/:title.html
+      excerpt_separator: <div id="more"></div>
   - scope:
       path: ""
       type: hacks
