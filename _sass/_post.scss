@@ -3,7 +3,7 @@
 
 #post {
   #post-header {
-    min-height: 500px;
+    min-height: 300px;
     color: #79BD8F;
     background-color: #333;
     background-attachment: scroll;
@@ -16,12 +16,12 @@
   }
   @media(min-width: $screen-md-min) {
     #post-header {
-      min-height: 800px;
+      min-height: 450px;
     }
   }
   @media(min-width: $screen-lg-min) {
     #post-header {
-      min-height: 900px;
+      min-height: 490px;
     }
   }
 
