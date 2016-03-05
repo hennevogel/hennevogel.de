@@ -1,11 +1,14 @@
 <article>
   <div class="container">
     <div class="col-md-8 col-md-offset-2">
-      <h2>
+      <h1>
         <a href="{{ site.siteurl }}{{ post.url }}">
           {{ post.title }}
         </a>
-      </h2>
+      </h1>
+      <p class="text-muted">
+        {% include post_meta.html date=post.date tags=post.tags %}
+      </p>
     </div>
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
@@ -20,10 +23,7 @@
     </div>
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
-        <p class="text-muted">
-          {% include post_meta.html date=post.date tags=post.tags %}
-        </p>
-        <div class="lead">
+        <div class="excerpt lead">
           {{ post.excerpt }}
         </div>
         <p class="text-right">
