@@ -25,7 +25,10 @@
     @media (min-width: $screen-md-min) {
       h2 { font-size: 3em; }
     }
-    @media (min-width: 1201px) {
+    @media (min-width: $screen-lg-min) {
+      h2 { font-size: 3.7em; }
+    }
+    @media (min-width: 1296px) {
       h2 { font-size: 4em; }
     }
   }
