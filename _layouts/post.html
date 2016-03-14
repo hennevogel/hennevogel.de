@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-<section id="post">
+<section id="post" class="h-entry">
 {% if page.image %}
   <div id="post-header" style="background-image: url(/images/posts/{{ page.image }});">
 {% else %}
@@ -10,14 +10,21 @@ layout: default
   </div>
   <div id="post-title">
     <div class='container'>
-      <h1>
+      <h1 class="p-name">
         {{ page.title }}
         <br>
       </h1>
       <p class="text-right">
         <small>
-          published
-          {{ page.date | date: "%B %-d, %Y" }}
+          published by
+          <a class="p-author h-card" href="https://hennevogel.de">
+            Henne
+          </a>
+          <br />
+          on
+          <time class="dt-published" datetime="{{ page.date  }}">
+            {{ page.date | date: "%B %-d, %Y" }}
+          </time>
           {% if page.tags.size > 0 %}
             <br />
             in
@@ -39,7 +46,7 @@ layout: default
   <div id="post-content">
     <div class='container'>
       <div class='row'>
-        <div class='col-md-8 col-md-offset-2'>
+        <div class='col-md-8 col-md-offset-2 e-content'>
           {{ content }}
         </div>
       </div>
