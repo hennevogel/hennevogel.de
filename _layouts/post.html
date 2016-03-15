@@ -52,4 +52,29 @@ layout: default
       </div>
     </div>
   </div>
+  <div id="post-comments">
+    <div class='container'>
+      <div class='row'>
+        <div class='col-md-8 col-md-offset-2 e-content'>
+          <div id="disqus_thread"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
+
+<script>
+    var disqus_config = function () {
+        this.page.url = "{{ page.url }}";
+        this.page.identifier = "{{ page.id }}";
+    };
+    (function() {
+        var d = document, s = d.createElement('script');
+
+        s.src = '//hennevogel.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
