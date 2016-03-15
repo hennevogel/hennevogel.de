@@ -1,3 +1,4 @@
+domain: 'https://hennevogel.de'
 paginate: 4
 paginate_path: "/blog/page:num/"
 encoding: utf-8
