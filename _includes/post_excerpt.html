@@ -1,17 +1,15 @@
 <article>
   <div class="container">
-    <div class="col-md-8 col-md-offset-2">
-      <h1>
-        <a href="{{ site.siteurl }}{{ post.url }}">
-          {{ post.title }}
-        </a>
-      </h1>
-      <p class="text-muted">
-        {% include post_meta.html date=post.date tags=post.tags %}
-      </p>
-    </div>
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
+        <h1>
+          <a href="{{ site.siteurl }}{{ post.url }}">
+            {{ post.title }}
+          </a>
+        </h1>
+        <p class="text-muted">
+          {% include post_meta.html date=post.date tags=post.tags %}
+        </p>
         <a href="{{ site.siteurl }}{{ post.url }}">
           {% if post.image %}
             <img class='img-responsive img-rounded center-block' src='/images/posts/{{ post.image }}'>
@@ -19,10 +17,11 @@
             <img class='img-responsive img-rounded center-block' src="http://lorempixel.com/g/750/382/technics?{{post.path}}">
           {% endif %}
         </a>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-8 col-md-offset-2">
+        {% if post.image %}
+          <p id="post-image-license" class="img-license pull-right hidden-xs">
+            {{ post.image_license }}
+          </p>
+        {% endif %}
         <div class="excerpt lead">
           {{ post.excerpt }}
         </div>
