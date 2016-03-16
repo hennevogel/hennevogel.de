@@ -9,39 +9,28 @@
   <div class='container'>
     <div class='row'>
       <div class='col-md-8' id='feature'>
-        <div class='row'>
-          <div class='row'>
-            <div class='col-md-12'>
-              <h2>
-                <a class="post-link" href="{{ site.posts.first.url | prepend: site.baseurl }}">{{ site.posts.first.title }}</a>
-              </h2>
-            </div>
-          </div>
-          <div class='col-md-12'>
-              {% if site.posts.first.image %}
-                <img class='img-responsive img-rounded center-block' src='/images/posts/{{ site.posts.first.image }}'>
-              {% else %}
-                <img class='img-responsive img-rounded center-block' src="//lorempixel.com/g/750/382/technics?{{post.path}}">
-              {% endif %}
-          </div>
+        <h2>
+          <a class="post-link" href="{{ site.posts.first.url | prepend: site.baseurl }}">{{ site.posts.first.title }}</a>
+        </h2>
+        <p class="text-muted">
+          {% include post_meta.html date=site.posts.first.date tags=site.posts.first.tags %}
+        </p>
+        {% if site.posts.first.image %}
+          <img class='img-responsive img-rounded center-block' src='/images/posts/{{ site.posts.first.image }}'>
+        {% else %}
+          <img class='img-responsive img-rounded center-block' src="//lorempixel.com/g/750/382/technics?{{post.path}}">
+        {% endif %}
+        {% if site.posts.first.image %}
+          <p id="post-image-license" class="img-license pull-right hidden-xs">
+            {{ site.posts.first.image_license }}
+          </p>
+        {% endif %}
+        <div class='excerpt lead'>
+          {{ site.posts.first.excerpt }}
         </div>
-        <div class='row'>
-          <div class='col-md-12'>
-            <p class="small">
-              {% include post_meta.html date=site.posts.first.date tags=site.posts.first.tags %}
-            </p>
-          </div>
-        </div>
-        <div class='row'>
-          <div class='col-md-12'>
-            <div class='lead'>
-              {{ site.posts.first.excerpt }}
-            </div>
-            <p class="text-right">
-              <a href="{{ site.posts.first.url | prepend: site.baseurl }}#more">Continue reading...</a>
-            </p>
-          </div>
-        </div>
+        <p class="text-right">
+          <a href="{{ site.posts.first.url | prepend: site.baseurl }}#more">Continue reading...</a>
+        </p>
       </div>
       <div class='col-md-3 col-md-offset-1'>
         {% include posts_carousel.html %}
