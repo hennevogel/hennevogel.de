@@ -98,6 +98,14 @@ section {
   margin-right: auto;
 }
 
+.img-license {
+  font-size: 0.9em !important;
+  color: $gray-light;
+  a {
+    color: #7fb7d2;
+  }
+}
+
 .navbar-brand {
   padding: 10px;
 }

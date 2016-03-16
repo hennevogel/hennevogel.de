@@ -9,6 +9,11 @@ layout: default
 {% endif %}
   </div>
   <div id="post-title">
+    {% if page.image %}
+      <p id="post-image-license" class="img-license pull-right hidden-xs">
+        {{ page.image_license }}
+      </p>
+    {% endif %}
     <div class='container'>
       <h1 class="p-name">
         {{ page.title }}
@@ -39,6 +44,11 @@ layout: default
                 {% endunless %}
               {% endif %}
           {% endfor %}
+          {% if page.image %}
+            <span class="visible-xs">
+              Cover image: {{ page.image_license }}
+            </span>
+          {% endif %}
         </small>
       </p>
     </div>

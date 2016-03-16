@@ -24,6 +24,11 @@
       min-height: 490px;
     }
   }
+  @media(min-width: 1450px) {
+    #post-header {
+      min-height: 690px;
+    }
+  }
 
   #post-title {
     background-color: rgba(0, 0, 0,.70);
@@ -36,9 +41,6 @@
   #post-content {
     margin-top: -50px;
     padding-bottom: 30px;
-    img {
-      @include img-responsive;
-    }
     table {
       @extend .table;
       @extend .table-striped;
