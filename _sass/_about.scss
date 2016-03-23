@@ -10,9 +10,26 @@
   #pie {
     padding-top: 28px;
   }
-  #chart {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  #myChart {
+    width: 300px !important;
+    height: auto !important;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @media (min-width: $screen-sm-min) {
+    #myChart {
+      width: 550px !important;
+    }
+  }
+  @media (min-width: $screen-md-min) {
+    #myChart {
+      width: 315px !important;
+    }
+  }
+  @media (min-width: $screen-lg-min) {
+    #myChart {
+      width: 390px !important;
+    }
   }
 }
