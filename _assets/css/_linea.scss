@@ -2,11 +2,11 @@
 
 @font-face {
   font-family: "linea";
-  src:url("/fonts/linea.eot");
-  src:url("/fonts/linea.eot?#iefix") format("embedded-opentype"),
-    url("/fonts/linea.woff") format("woff"),
-    url("/fonts/linea.ttf") format("truetype"),
-    url("/fonts/linea.svg#linea") format("svg");
+  src:url(font_path("linea.eot"));
+  src:url(font_path("linea.eot?#iefix")) format("embedded-opentype"),
+    url(font_path("linea.woff")) format("woff"),
+    url(font_path("linea.ttf")) format("truetype"),
+    url(font_path("linea.svg#linea")) format("svg");
   font-weight: normal;
   font-style: normal;
 }
