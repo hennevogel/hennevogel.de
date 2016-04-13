@@ -30,6 +30,11 @@ collections:
   hacks:
     output: true
 
-
+assets:
+  digest: true
+  sources:
+    - _assets/css
+    - _assets/images
+    - _assets/fonts
 # https://github.com/jekyll/jekyll/issues/2938
 exclude: [vendor, Gemfile, Gemfile.lock, README.md, bin, config]

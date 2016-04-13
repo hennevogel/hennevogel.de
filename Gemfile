@@ -7,6 +7,6 @@ group :jekyll_plugins do
   gem 'jekyll-archives'
   gem 'jekyll-paginate'
   gem 'jekyll-coffeescript'
+  gem 'jekyll-assets'
   gem 'redcarpet'
-  gem 'jekyll-press'
 end
