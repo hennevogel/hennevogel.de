@@ -36,6 +36,7 @@ assets:
     - "*.ttf"
     - "*.eot"
     - "*.woff"
+    - "*.woff2"
     - "*.svg"
     - "*.png"
     - "*.jpg"
