@@ -3,9 +3,9 @@ layout: default
 ---
 <section id="post" class="h-entry">
 {% if page.image %}
-  <div id="post-header" style="background-image: url(/images/posts/{{ page.image }});">
+  <div id="post-header" style="background-image: url({% asset_path "posts/{{ page.image }}" %});">
 {% else %}
-  <div id="post-header" style="background-image: url(/images/posts/default.jpg);">
+  <div id="post-header" style="background-image: url({% asset_path "posts/default.jpg" %});">
 {% endif %}
   </div>
   <div id="post-title">
