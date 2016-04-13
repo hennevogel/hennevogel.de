@@ -17,7 +17,7 @@ task :setup => :environment do
 end
 
 task :build do
-  queue 'bundle exec jekyll build'
+  queue 'JEKYLL_ENV=production bundle exec jekyll build'
 end
 
 desc "Deploys the current version to the server."
