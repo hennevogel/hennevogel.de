@@ -32,6 +32,13 @@ collections:
 
 assets:
   digest: true
+  assets:
+    - "*.ttf"
+    - "*.eot"
+    - "*.woff"
+    - "*.svg"
+    - "*.png"
+    - "*.jpg"
   sources:
     - _assets/css
     - _assets/images
