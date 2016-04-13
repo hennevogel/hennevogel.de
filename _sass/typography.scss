@@ -5,6 +5,16 @@ $ms-range:
 
 @import 'modular-scale';
 
+::selection {
+    background-color: #00eeee;
+    color: #222222;
+}
+
+::-moz-selection {
+    background-color: #00eeee;
+    color: #222222;
+}
+
 #post {
   p {
     @include ms-respond(font-size, 1);
