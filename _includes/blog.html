@@ -16,9 +16,9 @@
           {% include post_meta.html date=site.posts.first.date tags=site.posts.first.tags %}
         </p>
         {% if site.posts.first.image %}
-          <img class='img-responsive img-rounded center-block' src='/images/posts/{{ site.posts.first.image }}'>
+          <img class='img-responsive img-rounded center-block' src='/images/posts/{{ site.posts.first.image }}' alt='Post Image'>
         {% else %}
-          <img class='img-responsive img-rounded center-block' src="//lorempixel.com/g/750/382/technics?{{post.path}}">
+          <img class='img-responsive img-rounded center-block' src='//lorempixel.com/g/750/382/technics?{{post.path}}' alt='Post Image'>
         {% endif %}
         {% if site.posts.first.image %}
           <p id="post-image-license" class="img-license pull-right hidden-xs">
