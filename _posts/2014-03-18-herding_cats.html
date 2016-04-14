@@ -49,7 +49,10 @@ description: A blog post providing an introduction to the Open Biuld Service
 <h2>Updates: Nobody is perfect.</h2>
 
 <p>
-  {% image posts/black_swan.jpg alt:'A picture of a black swan among white swans' class:'img-responsive center-block'  %}
+  <img src="{% asset_path 'posts/black_swan.jpg' %}"
+    srcset="{% asset_path 'posts/black_swan.xs.jpg' %} 320w, {% asset_path 'posts/black_swan.md.jpg' %} 768w, {% asset_path 'posts/black_swan.lg.jpg' %} 1200w"
+    alt="A picture of a black swan among white swans"
+    class='img-responsive center-block'>
 </p>
 <p class="img-license text-right">
   <small>
