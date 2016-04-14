@@ -1,7 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>hennevogel</title>
+    <title>
+      Henne Vogelsang
+      {% if page.title %}
+        {% if page.type %}
+          - Blog posts about {{ page.title }}
+        {% else %}
+          - {{ page.title }}
+        {% endif %}
+      {% endif %}
+    </title>
+    {% if page.description %}
+      <meta name="description" content="{{ page.description}}" />
+    {% endif %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% stylesheet application %}
