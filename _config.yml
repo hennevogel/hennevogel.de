@@ -28,7 +28,7 @@ defaults:
       permalink: /:collection/:title/
 collections:
   hacks:
-    output: true
+    output: false
 
 assets:
   digest: true

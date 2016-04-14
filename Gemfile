@@ -8,5 +8,6 @@ group :jekyll_plugins do
   gem 'jekyll-paginate'
   gem 'jekyll-coffeescript'
   gem 'jekyll-assets'
+  gem 'jekyll-sitemap'
   gem 'redcarpet'
 end
