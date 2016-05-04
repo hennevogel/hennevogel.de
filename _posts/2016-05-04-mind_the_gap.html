@@ -1,0 +1,189 @@
+---
+image: mind_the_gap.jpg
+image_license: <a href="https://commons.wikimedia.org/wiki/File:Mind_the_gap_2.JPG">Mind the gap</a>
+               by Reinhard Dietrich licensed
+               <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en">Public Domain</a>
+tags: osem
+title: Mind the gap between platform and app
+description: A blog post about preparing a Ruby on Rails app to be runnable on Platform as a Service providers such as Heroku
+---
+<p>
+  With the Open Source Event Manager (OSEM), one of the <em>Ruby on Rails</em> apps I
+  hack on, we're heading down the road to version 1.0. A feature we
+  absolutely wanted to have, before making this step, was an easy deployment to at
+  least one of the many <em>Platform as a Service</em> (PaaS) providers. We deemed this
+  important for two reasons:
+</p>
+
+<ol>
+  <li>
+    Before people commit to use your precious little app they want to try it. And
+    this has to be hassle free.
+  </li>
+  <li>
+    Getting your server operating system ready to deploy Ruby on Rails applications can be
+    tedious, too tedious for some people.
+  </li>
+</ol>
+
+<p>
+  So I have been working on making our app ready for <a
+  href="https://devcenter.heroku.com/">Heroku</a> which is currently the most
+  popular PaaS provider for rails (is it?). This was an interesting road, this
+  is my travelogue.
+</p>
+
+<div id="more"></div>
+
+<h2>Storage in the public cloud</h2>
+<p>
+  Storing files is incredibly easy in Rails, there are many ready made solutions
+  for it like <a href="https://github.com/thoughtbot/paperclip">paperclip</a>, <a
+  href="https://github.com/markevans/dragonfly">dragonfly</a> or <a
+  href="https://github.com/carrierwaveuploader/carrierwave">carrierwave</a>. The
+  challenge with Heroku is, that on their free plan, your apps storage will be
+  discarded the moment it is stopped or restarted. This happens for instance every
+  time during a deployment or when the app goes to sleep because nobody is using
+  it.
+</p>
+<p>
+  And even though it's easy to store files in Rails, we in the OSEM team have long
+  discouraged this in our app. We rather try to make it as easy as possible to
+  reference things you have shared somewhere else. Want to show a picture of your
+  Events location? Use the ones you share on flickr or instagram anyway. Embed a
+  video of a Talk? Just paste the Youtube or Vimeo link. Share the slides with
+  your audience? Slideshare or Speakerdeck to the rescue!
+</p>
+
+<div class="img">
+  {% image 'posts/osem_commercials.gif' alt:'A picture of OSEMs commercial feature' class:'img-responsive img-rounded img-center' %}
+  <p class="img-license text-right">
+    OSEM commercials by Henne Vogelsang licensed
+    <a href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+  </p>
+</div>
+
+<p>
+  Still there are some places left in our app where we upload pictures.
+  Pictures we think conference organizers are not necessarily free to share on
+  other platforms, like sponsor logos or pictures of sponsored lodgings. So to
+  be able to use OSEM on Heroku our file upload needed support for offloading
+  the files to someone else's computer a.k.a. *the cloud*. In the end I have
+  settled for the carrierwave plug in of <a
+  href="http://cloudinary.com/">cloudinary</a> (<a
+  href="https://github.com/openSUSE/osem/pull/970">pull request #970</a>).
+</p>
+
+<p>
+  This means it's now as easy as configuring the <a
+  href="https://github.com/cloudinary/cloudinary_gem#configuration">cloudinary
+  gem</A> and making use of their free plan to shove off all the storage OSEM
+  needs to them.
+</p>
+
+<p>
+  Storage was the first gap in OSEM that I closed, another piece of the puzzle was
+  configuration.
+</p>
+
+<h2>Configuration in the environment</h2>
+<p>
+  According to <a href="http://12factor.net/config">some clever people</a> it's too easy to
+  mistakenly check in your apps configuration file into your version control
+  system. That's the reason your apps environment should provide all the settings.
+  I'm <strong>not</strong> a big fan of putting stickers onto microwaves that say you can't use
+  it to dry your cat. If people want to be stupid, let them.
+</p>
+
+<div class="img">
+  <img src="https://media.giphy.com/media/frdn0r0hUXDTa/giphy.gif" alt="Someone being stupid." class="img-responsive img-rounded img-center">
+</div>
+
+<p>
+  But hey 12-Factor is a thing, let's roll with it! So in <a
+  href="https://github.com/openSUSE/osem/pull/900">pull request #900</a> I
+  removed all traces of OSEMs YAML configuration file and now all the settings
+  happen in environment variables.
+</p>
+
+<p>
+  This was the second gap I had to close to be able to run our app on Heroku. Now
+  all of the sudden things where falling into place and some very interesting
+  things emerged for OSEM.
+</p>
+
+<h2>Continuous Deployment</h2>
+<p>
+  One of the reasons I have gone down this road was to make it easy for people
+  to try out OSEM. Now once you can run your app on Heroku you can also <a
+  href="https://devcenter.heroku.com/articles/github-integration">integrate your
+  github repository</a> and run a continuous deployment (every commit get's
+  deployed right away). That made it possible for us to set up an <a
+  href="http://demo.osem.io/">OSEM demo instance</a> for people to try which
+  always runs the latest code. All we had to do is to make use of data from our
+  test suite to populate the demo (<a
+  href="https://github.com/openSUSE/osem/pull/982">pull request #982</a>) and
+  voila...
+</p>
+
+<div class="img">
+  {% image 'posts/osem_demo.jpg' alt:'A picture of OSEMs demo data' class:'img-responsive img-rounded img-center' %}
+  <p class="img-license text-right">
+    OSEM demo by Henne Vogelsang licensed
+    <a href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+  </p>
+</div>
+
+<h2>Continuous Review</h2>
+<p>
+  So a continuous deployment of the latest code with some sample data. Does that
+  sound useful for you as free software developer? I think being a free
+  software developer first and foremost means collaborating with varying people
+  from all over. People I work with on a daily basis and people who I never had
+  contact with before. Collaboration mostly means reviewing each others changes
+  to our code. It's pretty easy as we have <a
+  href="https://github.com/openSUSE/osem/blob/master/CONTRIBUTING.md#how-to-contribute">rules
+  and tools</a> for that in place. What is not so easy is to do the same for
+  changes to the functionality, the user experience design, of our app.
+</p>
+<p>
+  In the OSEM team we some times attach a series of screenshots or animated gifs
+  to a github pull requests to convey changes to the user interaction and work
+  flows, but this is usually no replacement for trying yourself. Then in the
+  middle of me doing all of this <a
+  href="https://blog.heroku.com/archives/2016/4/18/heroku_review_apps_GA">Heroku
+  Review Apps</a> happened. Review apps are instant, disposable deployments of
+  your app that spin up automatically with each pull request.
+</p>
+
+<div class="img">
+  {% image 'posts/osem_heroku_pipeline.png' alt:'A picture of OSEMs pipeline on heroku' class:'img-responsive img-rounded img-center' %}
+  <p class="img-license text-right">
+    OSEM heroku pipeline by Henne Vogelsang licensed
+    <a href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+  </p>
+</div>
+
+<p>
+  Now, once someone sends a pull request where I want to review the user
+  experience design I just press the 'Create Review App' button on Heroku and a
+  minute later I get the a temporary instance populated with test data. Magic.
+</p>
+
+<h2>More things to come?</h2>
+<p>
+  Another thing we might want to replace in the future is how we spin up
+  developer instances. So far we use <a
+  href="https://github.com/openSUSE/osem/blob/master/CONTRIBUTING.md#runing-osem-for-development">Vagrant</a>
+  which starts your OSEM checkout in a virtual machine. But nowadays you have to
+  have <a href="https://devcenter.heroku.com/articles/docker">docker
+  containers</a> in the mix right? Let's see what the future brings.
+</p>
+<p>
+  All in all, I must say, it was a nice trip into the Platform as a Service
+  world. Surprisingly easy to do and even more surprisingly rewarding for the
+  development work flow. What do you think? Let me know in <a
+  href="#disqus_thread">the comments</a> or on <a
+  href="https://twitter.com/henne">twitter</a>. I'm looking forward to your
+  feedback :-)
+</p>
