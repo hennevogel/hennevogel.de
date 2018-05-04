@@ -66,25 +66,17 @@ layout: default
     <div class='container'>
       <div class='row'>
         <div class='col-md-8 col-md-offset-2 e-content'>
-          <div id="disqus_thread"></div>
+          <h2>Feedback?</h2>
+          <p>
+            Any criticism, remarks or praise about this post?
+            Get in touch, let's talk on
+            <a href="https://twitter.com/henne">twitter</a>,
+            <a href="https://de.linkedin.com/in/hennevogel">linkedin</a>
+            or via <a href="mailto:hvogel@hennevogel.de?subject=Re: {{ page.title }}">mail</a>.
+            I'm looking forward to your input!
+          </p>
         </div>
       </div>
     </div>
   </div>
 </section>
-
-<script>
-    var disqus_config = function () {
-        this.page.url = "{{ page.url | prepend: site.url  }}";
-        this.page.identifier = "{{ page.id }}";
-    };
-    (function() {
-        var d = document, s = d.createElement('script');
-
-        s.src = '//hennevogel.disqus.com/embed.js';
-
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
