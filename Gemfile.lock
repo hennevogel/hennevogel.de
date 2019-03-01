@@ -57,7 +57,7 @@ GEM
     open4 (1.3.4)
     pathutil (0.9.0)
       forwardable-extended (~> 2.6)
-    rack (1.6.4)
+    rack (1.6.11)
     rake (11.1.2)
     rb-fsevent (0.9.7)
     rb-inotify (0.9.7)
