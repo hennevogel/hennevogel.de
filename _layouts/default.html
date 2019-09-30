@@ -13,7 +13,7 @@
     </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% stylesheet application %}
+    {% asset application.css %}
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
     <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
     {% include favicon.html %}
@@ -40,7 +40,7 @@
       <script type="text/javascript">
         // content selector is used to extract the additional items
         $('.jscroll').jscroll({
-          loadingHtml: '<p class="text-center">{% image 'loader.gif' alt:'Loading' %}</p>',
+          loadingHtml: '<p class="text-center">{% asset 'loader.gif' alt='Loading' %}</p>',
           contentSelector: "#posts",
           nextSelector: '.next:last',
           debug: true

@@ -16,7 +16,7 @@
           {% include post_meta.html date=site.posts.first.date tags=site.posts.first.tags %}
         </p>
         {% if site.posts.first.image %}
-          {% image "posts/{{site.posts.first.image}}" alt:'Post picture' class:'img-responsive img-rounded center-block' %}
+          {% asset "posts/{{site.posts.first.image}}" alt='Post picture' class='img-responsive img-rounded center-block' %}
         {% else %}
           <img class='img-responsive img-rounded center-block' src='//lorempixel.com/g/750/382/technics?{{post.path}}' alt='Post Image'>
         {% endif %}

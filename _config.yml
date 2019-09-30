@@ -31,15 +31,6 @@ collections:
     output: false
 
 assets:
-  digest: true
-  assets:
-    - "*.ttf"
-    - "*.eot"
-    - "*.woff"
-    - "*.woff2"
-    - "*.svg"
-    - "*.png"
-    - "*.jpg"
   sources:
     - _assets/css
     - _assets/images
