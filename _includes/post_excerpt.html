@@ -12,7 +12,7 @@
         </p>
         <a href="{{ site.siteurl }}{{ post.url }}">
           {% if post.image %}
-            {% image "posts/{{post.image}}" alt:'Post image' class:'img-responsive img-rounded center-block' %}
+            {% asset "posts/{{post.image}}" alt='Post image' class='img-responsive img-rounded center-block' %}
           {% else %}
             <img class='img-responsive img-rounded center-block' src="http://lorempixel.com/g/750/382/technics?{{post.path}}">
           {% endif %}

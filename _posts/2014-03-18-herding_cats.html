@@ -49,8 +49,8 @@ description: A blog post providing an introduction to the Open Biuld Service
 <h2>Updates: Nobody is perfect.</h2>
 
 <p>
-  <img src="{% asset_path 'posts/black_swan.jpg' %}"
-    srcset="{% asset_path 'posts/black_swan.xs.jpg' %} 320w, {% asset_path 'posts/black_swan.md.jpg' %} 768w, {% asset_path 'posts/black_swan.lg.jpg' %} 1200w"
+  <img src="{% asset 'posts/black_swan.jpg' %}"
+    srcset="{% asset 'posts/black_swan.xs.jpg' %} 320w, {% asset 'posts/black_swan.md.jpg' %} 768w, {% asset 'posts/black_swan.lg.jpg' %} 1200w"
     alt="A picture of a black swan among white swans"
     class='img-responsive center-block'>
 </p>
@@ -93,7 +93,7 @@ description: A blog post providing an introduction to the Open Biuld Service
 <h2>Collaboration: Unity is strength</h2>
 
 <p>
-  {% image 'posts/collaboration.png' alt:'A picture the represents collaboration' class:'img-responsive center-block'  %}
+  {% asset 'posts/collaboration.png' alt='A picture the represents collaboration' class='img-responsive center-block'  %}
 </p>
 <p class="img-license text-right">
   <a href="http://creativecommons.org/licenses/by-sa/2.0/" title="Attribution-ShareAlike License">Some rights reserved</a>
@@ -146,7 +146,7 @@ description: A blog post providing an introduction to the Open Biuld Service
 
 <h2>Do. Or do not. There is no try.</h2>
 <p>
-  {% image 'posts/yoda.jpg' alt:'A picture of a paperfold Yoda' class:'img-responsive center-block'  %}
+  {% asset 'posts/yoda.jpg' alt='A picture of a paperfold Yoda' class='img-responsive center-block' %}
 </p>
 <p class="img-license text-right">
   <small>
