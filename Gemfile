@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'mina'
+gem 'influxdb-rails'
 
 group :jekyll_plugins do
   gem 'bootstrap-sass'
