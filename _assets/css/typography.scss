@@ -18,6 +18,7 @@ $ms-range:
 #post {
   p {
     @include ms-respond(font-size, 1);
+    line-height: 1.7;
   }
   h1 {
     @include ms-respond(font-size, 8);
