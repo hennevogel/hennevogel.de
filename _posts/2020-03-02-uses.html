@@ -1,0 +1,166 @@
+---
+image: neonbrand-60krlMMeWxU-unsplash.jpg
+image_license: <a href="https://unsplash.com/photos/60krlMMeWxU">wrench me</a>
+               by NeONBRAND
+title: My Toolbelt
+description: A blog post about the software and hardware I use daily.
+---
+<p>
+  Here is my personal hardware &amp; software stack. The things I use and enjoy on a daily basis
+  since a long time. The software is pretty much the standard in Free Software development stack.
+  Don't expect to find anything you don't know here. I write this because people keep asking me,
+  especially in mentoring situations.
+</p>
+
+<div id="more"></div>
+
+<h2>Operating System: <a href="https://www.opensuse.org/">openSUSE Tumbleweed</a></h2>
+<p>
+  It's my Linux of choice. Why? Because it's the German Engineering version of Linux:
+  Long heritage, a certain kind of stiffness and it's super tidy. The 
+  <a href="https://en.wikipedia.org/wiki/Rolling_release">rolling nature</a>
+  of Tumbleweed gives me the stability <b>and</b> the velocity I need. It brings all the standard
+  Linux tools through a kick ass package manager (<a href="https://doc.opensuse.org/documentation/leap/reference/html/book.opensuse.reference/cha-sw-cl.html">zypper</a>).
+  And it embodies what makes the Free Software eco system great: software diversity. openSUSE tries
+  <i>very hard</i> to treat all software as first class citizen of the distribution.
+</p>
+<p>
+  Okay I admit, I have been involved in making this Linux distribution for decades. So take this as pure
+  bragging on my part. What it also means for me is that it's super easy to <i>"scratch my itch"</i> a.k.a.
+  understand things, fix bugs, implement features and find the right people to poke. I can only recommend this
+  to you, find a Linux home, help to maintain it and make it your own.
+</p>
+
+<h2>Desktop Environment: <a href="https://www.gnome.org/">GNOME</a></h2>
+<p>
+  The thing I like most about GNOME is that it get's out of my way. It's restraint, simplistic, straight forward.
+  And yet, if I want to do a thing I have never done before, it'll have an opinion on how to do it.
+  I also dig the esthetics, I think I actually switched to it because it's soo damn beautiful to look
+  at.
+</p>
+
+<div class="img">
+  {% asset 'posts/gnome3.png' alt='The GNOME Desktop' class='img-responsive img-center' %}
+  <p class="img-license text-right">
+    GNOME 3 Desktop by
+    <a href="https://gnome.org">gnome.org</a>
+  </p>
+</div>
+
+<h2>Shell: <a href="https://www.zsh.org/">zsh</a></h2>
+<p>
+  Well, any shell. I couldn't live without all those glorious one-liners like
+  <code>for i in *; do echo mv $i `echo $i |sed 's/.rb/_spec.rb/'`; done</code> or
+  <code>history | awk '{print $2}' | sort | uniq -c | sort -nr |head -n 20</code>. Utilizing all those
+  programs that do only <b>one</b> thing, but one thing <b>well</b>. cp, mv, echo, grep, cat, awk, sed, find,
+  head, tail, curl, test, sleep and so on and so on. What a wonderful chest of lego bricks, ready for you to plug
+  together your own world. Also, I literally grew up in bash. It was shell scripting that introduced
+  me to software development! And I will forever be fascinated by it, despite all the sneeze from the more
+  sophisticated languages. Shell scripting is messy, raw, dangerous. Shell scripting is beautifully punk!
+</p>
+
+<h2>Browser: <a href="https://www.mozilla.org/en-US/firefox/new/">Mozilla Firefox</a></h2>
+<p>
+  I think, not counting the Linux kernel, Firefox is the only piece of software I used all my life
+  (if you think of netscape communicator as ancestor). It's because the single most important quality of Firefox is progress.
+  Tabs, add-ons, session restore, firebug, sync, mobile version and now built in privacy. Mozilla has been steadily
+  pushing it's flagship product forward. It might not always be the first to market, it might not always be perfect
+  from the start but it is always moving forward relentlessly. That is a rare quality. We all should pray that Mozilla
+  continues this despite the google browser monopoly! BTW how the flying fuck is that monopoly OK with 65% of you?
+  Don't you remember any computing history?
+</p>
+
+<h2>Source Code Management: <a href="https://git-scm.com/">git</a></h2>
+<p>
+  In the meanwhile all projects I contribute to use git. I like git for being the right amount of clever CLI.
+  That opens the pager only in the right moment, corrects me if I typo or let's me extend it by just name a
+  script/binary <code>git-diff-to-deploy</code>. And I really dig the <a href="https://git-scm.com/book/en/v2/Git-Internals-Git-Objects">file based approach</a> which means
+  that I can often recover my idiot mistakes by nervously mocking around in <code>.git</code>.
+  It shows that the people maintaining this are seriously dog-fooding their own product day in and day out.
+</p>
+<h2>Source Code Collaboration: <a href="https://github.com">github</a></h2>
+<p>
+  With github I have a love-hate relationship. I admire the idea, the product and many of the people who build it.
+  I build a tool in the same space of the industry (developer tooling) using the same technology (Ruby on Rails) and
+  github people set the gold standard in collaboration workflows since years. I only humbly follow their set out examples.
+</p>
+<p>
+  But I really don't like them riding and emphasizing
+  <a href="https://en.wikipedia.org/wiki/Network_effect">the network effect</a>. And I flat out <b>hate</b> that
+  such a large piece of software in my stack is closed source.
+  Quite frankly I do not understand how anyone at Microsoft can justify to the mirror that github is not Free Software.
+  It's not like anyone will ever be able to take any business away from github.com which value is the number of people
+  using it. As you can see with me and my projects, that ship has sailed a long time ago.
+</p>
+<p>
+  I am a Ruby on Rails developer, I know a thing or two about collaborating on software. I want to send a pull-requests
+  fixing gripes or missing functionality I have with github itself. Why <em>the hell</em> can't I do that? Why do people
+  have to resort to write <a href="https://github.com/sindresorhus/refined-github">browser extensions</a> to be able to
+  collaborate on github functionality. This is insane! &lt;/rant&gt;
+</p>
+<h2>Mailer: <a href="https://www.thunderbird.net">Mozilla Thunderbird</a></h2>
+<p>
+  Thunderbird is the only piece of software in this list I'm not very passionate about. It helps me reading,
+  finding and writing mail from my four imap accounts in one single interface. It does so better than any
+  mail user agent, web mailer or mobile app I have tried so far. Yet I have the feeling there should be something
+  better. Can't seem to find it though, despite really searching. Guess Churchill was right: Thunderbird is the
+  worst MUA, except for all the others.
+</p>
+<h2>Editor: <a href="https://code.visualstudio.com/">Visual Studio Code</a> and <a href="https://www.vim.org/">vim</a></h2>
+<p>
+  I fire up vim when I need to do a quick script, jog down a note, edit configuration files or for a quick
+  fix. Visual Studio Code is what I use for deep dive bug fixes or feature development. About vim I like most
+  the raw power that comes with it. Doing something like <code>gqaw</code> or <code>v&lt;end&gt;~</code> is gold.
+  But I have a problem with vim: I easily remember a small set of things for a long time, but I have not much capacity
+  to remember 50 keyboad shortcuts forever ¯\_(ツ)_/¯ That's why I need a user interface that guides me and offers
+  me a place to search visually for what I want to do. <code>CTRL+p+fold level+click</code> is exactly that.
+</p>
+
+<div class="img">
+  {% asset 'posts/visual-studio-code.png' alt='A screenshot of visual studio code' class='img-responsive img-rounded img-center' %}
+  <p class="img-license text-right">
+    Visual Studio Code by Henne Vogelsang licensed
+    <a href="http://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+  </p>
+</div>
+
+<h2>Containers: <a href="https://docs.docker.com">docker &amp; docker-compose</a></h2>
+<p>
+  I'm hacking a bunch of different software projects on a daily basis. I need them compartmentalized so
+  I can build, start/stop and destroy them at will. Without each of them compromising the other, or my system,
+  with their gazillion dependencies, services and side cars.
+</p>
+<p>
+  Linux containers are the most efficient way to
+  do this for me. As I'm not super interested in architectural intricacies of container runtimes and a frequent
+  visitor of <a href="https://doineedkubernetes.com/">doineedkubernetes.com</a>, I'm kind of habituated to
+  docker and docker-compose. Investing a day or two into building a development environment that you can set up,
+  run, suspend and tear down at will is hacker magic! Mounting your local file system into it, so your can
+  shell around and use whatever editor you want is 🤯
+</p>
+<hr>
+<h2>Laptop: <a href="https://www.dell.com/en-us/work/shop/dell-laptops-and-notebooks/new-xps-13-laptop/spd/xps-13-9300-laptop">Dell XPS 13 (9380)</a></h2>
+<p>
+  I work from at least two different places during the day. My office, meeting room, home office, the train, hotel room etc.
+  That's why I dig this powerful 13" laptop you can swing around with ease. It also features a nice enough keyboard,
+  can be charged via USB-C (<a href="https://www.dell.com/en-in/shop/dell-hybrid-adapter-power-bank-usb-c-ph45w17-ca-45w-ac-adapter-notebook-power-bank-43wh/apd/492-bciv/pc-accessories">power bank</a> ready) and
+  you can even be buy it with (the wrong) Linux preloaded! What more can you ask from hardware?
+</p>
+<h2>Keyboard: <a href="https://www.duckychannel.com.tw/en/Ducky-One2-Horizon-TKL">Ducky One 2 Horizon TKL</a></h2>
+<p>
+  Guess if you're an old fart like me you just need something that feels a bit like a model M keyboard. But please without
+  the nicotine stained look, I really do not need to be reminded that back in the day I smoked during hacking.
+  This ducky quacks for me at the office where I plug in my laptop into a docking station.
+</p>
+
+<div class="img">
+  {% asset 'posts/ducky.png' alt='A Keyboard' class='img-responsive img-center' %}
+  <p class="img-license text-right">
+    Ducky One 2 Horizon TKL
+    <a href="https://duckychannel.com.tw">duckychannel.com.tw</a>
+  </p>
+</div>
+
+<h2>That's what I consistently make use of during the day, nothing spectacular right? Of course not, those things
+  are about getting shit done! Not about impressing you, sport! 😜
+</h2>
