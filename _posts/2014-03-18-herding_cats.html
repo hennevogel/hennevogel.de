@@ -48,18 +48,13 @@ description: A blog post providing an introduction to the Open Biuld Service
 
 <h2>Updates: Nobody is perfect.</h2>
 
-<p>
-  <img src="{% asset 'posts/black_swan.jpg' %}"
-    srcset="{% asset 'posts/black_swan.xs.jpg' %} 320w, {% asset 'posts/black_swan.md.jpg' %} 768w, {% asset 'posts/black_swan.lg.jpg' %} 1200w"
-    alt="A picture of a black swan among white swans"
-    class='img-responsive center-block'>
-</p>
-<p class="img-license text-right">
-  <small>
+<div class="img">
+  {% asset 'posts/black_swan.jpg' alt='A picture of a black swan among white swans' class='img-responsive img-rounded img-center' %}
+  <p class="img-license text-right">
     <a href="http://creativecommons.org/licenses/by-sa/2.0/" title="Attribution-ShareAlike License">Some rights reserved</a>
     by <a href="http://www.geograph.org.uk/profile/3972">Colin Smith</a>
-  </small>
-</p>
+  </p>
+</div>
 
 <p>
   Sadly, software is sometimes defective and people make mistakes.  Nobody is
