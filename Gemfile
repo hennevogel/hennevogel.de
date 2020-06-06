@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'mina'
-gem "sprockets", "~> 3.7"
+gem "sprockets", "~> 4.0"
 
 group :jekyll_plugins do
   gem 'bootstrap-sass'
