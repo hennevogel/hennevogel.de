@@ -50,7 +50,7 @@ description: A blog post about the Ruby on Rails APM with influxdb-rails
 </p>
 
 <p>
-  That is why I need someone to correct that BIAS for me, in black and white.
+  That is why I need someone to correct that bias for me, in black and white.
 </p>
 
 <h2>Free Software APM</h2>
@@ -119,7 +119,8 @@ Password: grafana
 </p>
 
 {% highlight shell %}
-echo 'gem "influxdb-rails"' >> Gemfile
+bundler add influxdb-rails
+```
 bundle install
 bundle exec rails generate influxdb
 {% endhighlight %}
@@ -131,8 +132,8 @@ bundle exec rails generate influxdb
 
 <h2>Understanding Ruby on Rails Performance</h2>
 <p>
-  Every time you use your dev-env <code>influxdb-rails</code> will write a plethora of performance data into InfluxDB.
-  Let's look at one of the measurements so you get an idea what's going on. You remember the <code>ActiveSupport::Notification</code>
+  Every time you use your dev-env, <code>influxdb-rails</code> will write a plethora of performance data into InfluxDB.
+  Let's look at one of the measurements so you get an idea of what's going on. You remember the <code>ActiveSupport::Notification</code>
   called <code>process_action.action_controller</code> from the previous post? Rails sends this message every time an action in
   your controller has finished. It includes performance data for this action.
 </p>
@@ -148,7 +149,7 @@ Completed 200 OK in 5ms (Views: 4.1ms | ActiveRecord: 0.1ms | Allocations: 3514)
 
 <p>
   <code>ThingsController#index</code> took 5ms to finish overall, 4.1ms of those 5 in rendering, 0.1ms in querying the database.
-  You find the same data for every request you make in your InfluxDB. Head over to <a href="http://127.0.0.0:4000/explore">http://127.0.0.0:4000/explore</a>
+  You find the same data for every request you make in your InfluxDB. Head over to <a href="http://127.0.0.1:4000/explore">http://127.0.0.1:4000/explore</a>
   and let Grafana plot it for you.
 </p>
 
@@ -196,4 +197,3 @@ Completed 200 OK in 5ms (Views: 4.1ms | ActiveRecord: 0.1ms | Allocations: 3514)
   Play with them a little, I will tell you about all the nitty gritty details in the next post of this series:
   <a href="/blog/beyond-performance.html">Rails instrumentation beyond performance.</a>
 </p>
-
