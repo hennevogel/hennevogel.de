@@ -6,7 +6,10 @@ description: A blog post about the Ruby on Rails APM with influxdb-rails
 ---
 
 <p>
-
+  Now that we learned how truly magnificent <code>ActiveSupport::Notifications</code> is in the previous post,
+  let's explore a RubyGem <a href="https://bruckmayer.net/">Chris</a>, others and me have built around this: influxdb-rails.
+  Together with some other awesome Free Software, it will help you to deep dive into and understand your Ruby on Rails
+  application performance.
 </p>
 
 <div id="more"></div>
@@ -30,4 +33,171 @@ description: A blog post about the Ruby on Rails APM with influxdb-rails
     </ul>
   </p>
 </div>
+
+- Why is APM important
+- What does influxdb-rails report and what do we do with it? 3 Examples.
+- How to setup APM with it for your app
+
+<h2>Application Performance Monitoring (APM)</h2>
+<p>
+  I'm not sure we have to discuss this at all anymore, but here is why I think I need application performance
+  monitoring for my Ruby on Rail apps: I'm an expert in using the software I hack. Hence I always travel the happy
+  path, cleverly and unconsciously avoid the pitfalls, use it with forethought of the underlying architecture.
+  Because of that, I usually <b>think</b> my app is fast: <a href="https://blog.teamtreehouse.com/perceived-performance">perceived performance</a>.
+</p>
+
+<p>
+  <blockquote>
+    It's not what you look at that matters, it's what you see.
+    – Henry David Thoreau
+  </blockquote>
+</p>
+
+<p>
+  That is why I need someone to correct that BIAS for me, in black and white.
+</p>
+
+<h2>Free Software APM</h2>
+
+<p>
+  The good folks at <a href="https://contributors.rubyonrails.org/">Rails</a> bring the instrumentation framework.
+  <a href="https://www.influxdata.com/about/">InfluxData</a> deliver a time series database.
+  <a href="https://grafana.com/about/team/">Grafana Labs</a> make a dashboard builder. All we need to do, as so often,
+  is to plug Free Software together: SUCCESS!
+</p>
+
+<h3>InfluxDB + Grafana == 🧨</h3>
+
+<p>
+  I assume your Rails development environment is already running on 127.0.0.0:300. Getting InfluxDB and Grafana is a matter
+  of pulling containers these days. You can use this simple <code>docker-compose</code> configuration for running them locally
+  too.
+</p>
+
+{% highlight yaml %}
+# docker-compose.yml
+version: "3.7"
+services:
+  influx:
+    image: influxdb:1.7
+    environment:
+      - INFLUXDB_DB=rails
+      - INFLUXDB_USER=root
+      - INFLUXDB_USER_PASSWORD=root
+      - INFLUXDB_READ_USER=grafana
+      - INFLUXDB_READ_USER_PASSWORD=grafana
+    volumes:
+      - influxdata:/var/lib/influxdb
+    ports:
+      - 8086:8086
+  grafana:
+    image: grafana/grafana:7.4.5
+    ports:
+      - 4000:3000
+    depends_on:
+      - influx
+    volumes:
+      - grafanadata:/var/lib/grafana
+volumes:
+  influxdata:
+  grafanadata:
+{% endhighlight %}
+
+<p>
+  A courageous <code>docker-compose up</code> will boot things and you can access Grafana at <a href="http://127.0.0.1:4000">http://127.0.0.1:4000</a> (user: admin / password: admin).
+  To read data from the InfluxDB container in Grafana, leave the <a href="http://127.0.0.1:4000/datasources">/datasources</a>
+  InfluxDB defaults alone and configure:
+</p>
+
+{% highlight shell %}
+URL: http://influx:8086
+Database: rails
+User: grafana
+Password: grafana
+{% endhighlight %}
+
+<h3>influxdb-rails: 🪢 things together</h3>
+<p>
+  The <code>influxdb-rails</code> RubyGem is the missing glue code for making your app report metrics into the InfluxDB.
+  Plug it into your Rails app by adding it to your bundle.
+</p>
+
+{% highlight shell %}
+echo 'gem "influxdb-rails"' >> Gemfile
+bundle install
+bundle exec rails generate influxdb
+{% endhighlight %}
+
+<p>
+  The next time you boot your Rails dev-env it will start to measure the performance of your app. Now comes the interesting
+  part, interpreting this data with Grafana.
+</p>
+
+<h2>Understanding Ruby on Rails Performance</h2>
+<p>
+  Every time you use your dev-env <code>influxdb-rails</code> will write a plethora of performance data into InfluxDB.
+  Let's look at one of the measurements so you get an idea what's going on. You remember the <code>ActiveSupport::Notification</code>
+  called <code>process_action.action_controller</code> from the previous post? Rails sends this message every time an action in
+  your controller has finished. It includes performance data for this action.
+</p>
+<p>
+  You should know this from somewhere: development.log! It contains the same information.
+</p>
+
+{% highlight shell %}
+Started GET "/things" for 127.0.0.1 at 2021-03-25 15:20:14 +0100
+...
+Completed 200 OK in 5ms (Views: 4.1ms | ActiveRecord: 0.1ms | Allocations: 3514)
+{% endhighlight %}
+
+<p>
+  <code>ThingsController#index</code> took 5ms to finish overall, 4.1ms of those 5 in rendering, 0.1ms in querying the database.
+  You find the same data for every request you make in your InfluxDB. Head over to <a href="http://127.0.0.0:4000/explore">http://127.0.0.0:4000/explore</a>
+  and let Grafana plot it for you.
+</p>
+
+<div class="img">
+  {% asset 'posts/grafana-process_action.png' alt='A Grafana Panel plot' class='img-responsive img-center' %}
+</div>
+
+<p>
+  Only want to see how your views are performing? Change the <code>field</code> from <code>controller</code> to <code>view</code>.
+  Magic 🪄 But this is only one out of many different ways to look at this measurement. All of the panels below use this one
+  measurement and the data it brings to visualize controller actions.
+</p>
+
+<div class="img">
+  {% asset 'posts/grafana-process_action-panels.jpg' alt='Many different Grafana panel plots' class='img-responsive img-center' %}
+</div>
+
+<p>And this is only one measurement, <code>influxdb-rails</code> reports around a dozen.
+  Now I could send you off your way to learn about
+  <a href="https://github.com/influxdata/influxdb-rails">ALL.</a>
+  <a href="https://docs.influxdata.com/influxdb/v1.7/">THE.</a>
+  <a href="https://grafana.com/docs/grafana/latest/getting-started/getting-started/">SOFTWARE.</a>
+  involved, but that would be mean wouldn't it?
+</p>
+
+<h3>Ruby on Rails Dashboards</h3>
+<p>
+  We, the Free Software community, are in this together right? We collaborate on Ruby on Rails. We work together to make the
+  InfluxDB better. We cooperate to improve Grafana. Why not do the same for the dashboards to visualize Rails performance data?
+  Let's collaborate! That is why we have build a couple of dashboards you can <a href="http://127.0.0.0:4000/dashboard/import">import</a>
+  into your Grafana. Just copy and paste the URLs.
+  <ul>
+    <li><a href="https://grafana.com/grafana/dashboards/10428/" rel="nofollow">Ruby On Rails Performance Overview</a></li>
+    <li>Performance insights into individual requests, see <a href="https://grafana.com/grafana/dashboards/10429" rel="nofollow">Ruby On Rails Performance per Request</a></li>
+    <li>Performance of individual actions, see <a href="https://grafana.com/grafana/dashboards/11031" rel="nofollow">Ruby On Rails Performance per Action</a></li>
+    <li><a href="https://grafana.com/grafana/dashboards/14115" rel="nofollow">Ruby On Rails Health Overview</a></li>
+    <li><a href="https://grafana.com/grafana/dashboards/14116" rel="nofollow">Ruby on Rails ActiveJob Overview</a></li>
+    <li><a href="https://grafana.com/grafana/dashboards/14118" rel="nofollow">Ruby on Rails Slowlog by Request</a></li>
+    <li><a href="https://grafana.com/grafana/dashboards/14117" rel="nofollow">Ruby on Rails Slowlog by Action</a></li>
+    <li><a href="https://grafana.com/grafana/dashboards/14119" rel="nofollow">Ruby on Rails Slowlog by SQL</a></li>
+  </ul>
+</p>
+
+<p>
+  Play with them a little, I will tell you about all the nitty gritty details in the next post of this series:
+  <a href="/blog/beyond-performance.html">Rails instrumentation beyond performance.</a>
+</p>
 
