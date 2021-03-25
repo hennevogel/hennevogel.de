@@ -1,7 +1,7 @@
 ---
 image: fleur-dQf7RZhMOJU-unsplash.jpg 
 image_license: Photo by Fleur on <a href="https://unsplash.com/photos/dQf7RZhMOJU">Unsplash</a>
-title: Measure twice, instrument once with influxdb-rails!
+title: 'Measure twice, cut once: Application Performance Monitoring'
 description: A blog post about the Ruby on Rails APM with influxdb-rails
 ---
 
@@ -25,10 +25,10 @@ description: A blog post about the Ruby on Rails APM with influxdb-rails
         <a href="/blog/activesupport.html">ActiveSupport::Notifications is rad! 💘</a>
       </li>
       <li>
-        Measure twice, instrument once with influxdb-rails! (this post)
+        Measure twice, cut once: Application Performance Monitoring (this post)
       </li>
       <li>
-        <a href="/blog/beyond-performance.html">influxdb-rails instrumentation beyond performance.</a>
+        <a href="/blog/beyond-performance.html">Beyond Performance with influxdb-rails</a>
       </li>
     </ul>
   </p>
@@ -62,7 +62,7 @@ description: A blog post about the Ruby on Rails APM with influxdb-rails
   is to plug Free Software together: SUCCESS!
 </p>
 
-<h3>InfluxDB + Grafana == 🧨</h3>
+<h3>InfluxDB + Grafana == <span title='Da Bomb!'>🧨</span></h3>
 
 <p>
   I assume your Rails development environment is already running on 127.0.0.0:300. Getting InfluxDB and Grafana is a matter
@@ -112,7 +112,7 @@ User: grafana
 Password: grafana
 {% endhighlight %}
 
-<h3>influxdb-rails: 🪢 things together</h3>
+<h3>influxdb-rails: <span title='Tie'>🪢</span> things together</h3>
 <p>
   The <code>influxdb-rails</code> RubyGem is the missing glue code for making your app report metrics into the InfluxDB.
   Plug it into your Rails app by adding it to your bundle.
@@ -177,10 +177,10 @@ Completed 200 OK in 5ms (Views: 4.1ms | ActiveRecord: 0.1ms | Allocations: 3514)
 
 <h3>Ruby on Rails Dashboards</h3>
 <p>
-  We, the Free Software community, are in this together right? We collaborate on Ruby on Rails. We work together to make the
+  We, the Free Software community, are in this together! We collaborate on Ruby on Rails. We work together to make the
   InfluxDB better. We cooperate to improve Grafana. Why not do the same for the dashboards to visualize Rails performance data?
   Let's collaborate! That is why we have build a couple of dashboards you can <a href="http://127.0.0.0:4000/dashboard/import">import</a>
-  into your Grafana. Just copy and paste the URLs.
+  into your Grafana. Just copy and paste the URLs...
   <ul>
     <li><a href="https://grafana.com/grafana/dashboards/10428/" rel="nofollow">Ruby On Rails Performance Overview</a></li>
     <li>Performance insights into individual requests, see <a href="https://grafana.com/grafana/dashboards/10429" rel="nofollow">Ruby On Rails Performance per Request</a></li>
@@ -195,5 +195,5 @@ Completed 200 OK in 5ms (Views: 4.1ms | ActiveRecord: 0.1ms | Allocations: 3514)
 
 <p>
   Play with them a little, I will tell you about all the nitty gritty details in the next post of this series:
-  <a href="/blog/beyond-performance.html">Rails instrumentation beyond performance.</a>
+  <a href="/blog/beyond-performance.html">Beyond Performance with influxdb-rails</a>
 </p>
