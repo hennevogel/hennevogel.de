@@ -1,0 +1,158 @@
+---
+image: nasa-wAkLQnT2TC0-unsplash.jpg
+image_license: Photo by NASA on <a href="https://unsplash.com/photos/wAkLQnT2TC0">Unsplash</a>
+title: Let's build Software Libre APM together
+description: An introduction to Rails Application Monitoring and call to action to collaborate 
+---
+
+<p>
+  Alright, you learned about <code>ActiveSupport::Notifications</code>, InfluxDB, Grafana and influxdb-rails
+  in the two previous posts. Let's dive a bit deeper and look how we built the dashboards for you. So we can
+  study, change and improve them together.
+</p>
+
+<blockquote>
+  “Individually we are one drop; but together we are an ocean.” – Ryunosoke Satoro
+</blockquote>
+
+<p>
+  Welcome to your Ruby on Rails Application Monitoring 101.
+</p>
+
+<div id="more"></div>
+
+<div class="alert alert-warning">
+  This post is the last part of a three part series about monitoring your Ruby on Rails app with influxdb-rails.
+  Make sure to check them all out!
+  <ul>
+    <li>
+      <a href="/blog/activesupport.html">ActiveSupport::Notifications is rad! 💘</a>
+    </li>
+    <li>
+      <a href="/blog/influxdb-rails.html">Measure twice, cut once: App Performance Monitoring with influxdb-rails</a>
+    </li>
+    <li>
+      Let's build Software Libre APM together (this post)
+    </li>
+  </ul>
+ </div>
+
+<h2>The Ying and Yang of measurements</h2>
+<p>
+  Basically there are two types of measurements we do. How often something happened and how long something took.
+  Both types are most often complementary, interconnected and interdependent.
+  On the performance dashboard we count for instance how many requests your application is serving.
+</p>
+
+<div class="img">
+  {% asset 'posts/grafana-requests_per_minute.png' alt='A Grafana Panel plotting requests per minute' class='img-responsive img-center' %}
+</div>
+
+<p>
+  We also look at the time your application spends on doing that.
+</p>
+
+<div class="img">
+  {% asset 'posts/grafana-request_performance.png' alt='A Grafana Panel plotting requests per minute' class='img-responsive img-center' %}
+</div>
+
+<p>
+  At some point the number of requests will have an influence on the time spend (oversaturation). If one of your actions
+  is using too many resources it will have influence on the number of requests you are able to serve (overutilization).
+  Ying and Yang.
+</p>
+
+<h2>The minions of measurements</h2>
+<p>
+  Looking at the graphs above you see some helpers at work you should know about.
+</p>
+
+<h3>Time</h3>
+<p>
+  First and foremost: Time Windows. The requests are counted <em>per minute</em> and we look at measurements in the <em>last hour</em>. Time windows help to
+  lower information density and make your measurements a bit more digestible. Look at the same measurements <em>per second</em>
+  for the last <em>12 hours</em>. 60 times 24 higher information density. Not so easy to interpret anymore...
+</p>
+
+<div class="img">
+  {% asset 'posts/grafana-requests_per_second.png' alt='A Grafana Panel plotting requests per second' class='img-responsive img-center' %}
+</div>
+
+<h3>Statistics</h3>
+<p>
+  The same way time windows will make it easier for you to understand your data, some descriptive statistics will help you too.
+  For instance calculating the maximum time 99% of requests in the last minute took. Like we did above.
+  I won't bore you to death with the math behind this, if you're into this checkout <a href="https://en.wikipedia.org/wiki/Descriptive_statistics">wikipedia</a>
+  or something. Just remember, it makes data digestible for you. Look at the same performance data without applying statistics.
+</p>
+
+<div class="img">
+  {% asset 'posts/grafana-request_performance_no_statistic.png' alt='A Grafana Panel plotting requests per second' class='img-responsive img-center' %}
+</div>
+
+<h3>Grouping</h3>
+<p>
+  The third helper that makes data understandable for you is grouping data. Like ActiveJobs per minute grouped by queue. That 
+  grouping might make more clear to you why the number of jobs so high. Or grouping requests per minute by HTTP Status might
+  reveal how much stuff goes wrong.
+</p>
+
+<div class="img">
+  {% asset 'posts/grafana-request_grouping.png' alt='A Grafana Panel plotting requests per second' class='img-responsive img-center' %}
+</div>
+
+<p>
+  A different form of grouping is to visualize all measurements connected to a specific event, like a single request. Or all the
+  measurements a specific controller action has fired in the last hour.
+</p>
+
+<div class="img">
+  {% asset 'posts/grafana-grouping_by_request.png' alt='A Grafana Panel plotting requests per second' class='img-responsive img-center' %}
+</div>
+
+<h3>Rankings</h3>
+<p>
+  Another thing we do on the dashboard is ranking (groups of) events by time, slow to fast. So you know where you might want to
+  concentrate your efforts to improve performance.
+</p>
+
+<div class="img">
+  {% asset 'posts/grafana-slowlog.png' alt='A Grafana Panel plotting requests per second' class='img-responsive img-center' %}
+</div>
+
+<h2>Apply your knowledge, let's collaborate on Rails APM/AHM</h2>
+<p>
+  Maybe I inspired some ideas for new features in the 101 above? I'm also sure there are many people out in the Rails community that
+  have way more knowledge and ideas about statistics, measurements and all the tools involved than Chris and me. Let's
+  work together, patches to the collection of dashboards (and the Ruby code) are more than welcome!
+</p>
+
+<h3>Why build, not buy?</h3>
+<p>
+  But Henne, you say, there is already Sentry, New Relic, Datadog, Skylight and tons of other services that do this.
+  Why build another one? Why reinvent the wheel?
+</p>
+
+<p>
+   Because Software Libre is an deeply evolutionary process. Software Libre, just like Evolution, experiments all the time.
+   Many experiments find their niche to exist. Some even go global.
+</p>
+<div class="img">
+ {% asset 'posts/corona.jpg' alt='A tire graveyard' class='img-responsive' %}
+ <p class="img-license text-right">
+   Coronavirus: BW CG Illustration
+   by <a href="https://www.flickr.com/photos/yusamoilov/49678500083">Yuri Samoilov</a>
+ </p>
+</div>
+<p>  
+   Like Linux, the largest install base of ALL operating systems on this planet. Wordpress powering an unbelievable 30% of
+   the top 10 million websites. Mediawiki running the 5th most popular site globally. But also, more than 98% of all projects
+   on GitHub are not seeing any development beyond the first year they were created. Just like 99% of all species that ever
+   lived on Earth are estimated to be extinct.
+</p>
+
+<p>
+  We need to experiment and collaborate together. Evolution is what we do baby! 🤓
+  Can't run, copy, distribute, study, change and improve the software SaaS providers run. We can't scratch our itch,
+  can't break it, learn how it works and make it better together, that's why. Let's do this!
+</p>

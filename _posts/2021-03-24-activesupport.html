@@ -1,0 +1,167 @@
+---
+image: possessed-photography-tiNCpHudGrw-unsplash.jpg
+image_license: Photo by Possessed Photography on <a href="https://unsplash.com/photos/tiNCpHudGrw">Unsplash</a>
+title: ActiveSupport::Notifications is Rad!
+description: A blog post about Ruby on Rails instrumentation with ActiveSupport::Notifications
+---
+
+<p>
+  One of the lesser known parts of Rails core is the ActiveSupport instrumentation framework.
+  <code>ActiveSupport::Notifications</code> includes all the things you need to implement pub-sub in Rails.
+  Pub-Sub is a software architecture where you publish (send) a message without being specific about who should
+  receive it. Fire and forget.
+</p>
+<p>  
+  Receiving a message, and doing something with it, "just" requires you to subscribe to it. Because the publisher doesn't
+  need to know about the subscribers (as they are decoupled), this provides nice opportunities for organization and scale.
+</p>
+<p>
+  Let's explore the joyful shenanigans of this.
+</p>
+
+<div id="more"></div>
+
+<div class="alert alert-warning">
+  This post is the first part of a three part series about instrumenting your Ruby on Rails app with influxdb-rails.
+  Make sure to check them all out!
+  <ul>
+    <li>
+      ActiveSupport::Notifications is rad! (this post)
+    </li>
+    <li>
+      <a href="/blog/influxdb-rails.html">Measure twice, cut once: App Performance Monitoring with influxdb-rails</a>
+    </li>
+    <li>
+      <a href="/blog/apm-but-together.html">Let's build Software Libre APM together</a>
+    </li>
+  </ul>
+</div>
+
+<h2>Publish &amp; Subscribe</h2>
+
+<p>
+  There is an instrumentation message emitted from <code>ActionController</code> that includes interesting data
+  about the things happening in your controller action. Let's explore this.
+</p>
+<p>
+  <small>
+    If you don't have a Ruby on Rails app at hand, just setup a minimal one with <code>rails new --minimal</code>
+  </small>
+</p>
+
+<p>
+  Add this code into an initializer
+</p>
+
+{% highlight ruby %}
+# config/initializers/instrumentation_subscriber.rb
+
+# What happens in ActionController?
+module ActionController
+  class InstrumentationSubscriber < ActiveSupport::Subscriber
+    attach_to :action_controller
+
+    def process_action(message)
+      Rails.logger.debug "Instrumentation #{message.name} Received!"
+    end
+  end
+end
+{% endhighlight %}
+
+<p>
+  Boot the app (<code>rails server</code>), visit <a href="http://127.0.0.0:3000">http://127.0.0.0:3000</a> and you'll
+  see the new log lines in your development.log. So what? What's the difference to calling <code>Rails.logger</code> in
+  an action or callback inside your controller? Why is <code>ActiveSupport::Notifications</code> fabulous?
+</p>
+
+<h2>ActiveSupport::Notifications Scales</h2>
+<p>
+  First, as explained in the intro, the main advantage is that the publisher is decoupled from the subscriber. For instance,
+  you can have more than one subscriber listening to <code>process_action.action_controller</code>.
+</p>
+
+{% highlight ruby %}
+# config/initializers/slowlog_subscriber.rb
+
+module ActionController
+  class SlowlogSubscriber < ActiveSupport::Subscriber
+    attach_to :action_controller
+
+    def process_action(message)
+      return if message.duration <= 10
+
+      controller_location = [message.payload[:controller], message.payload[:action]].join("#") # -> ThingsController#something
+      Rails.logger.debug "#{controller_location} was slow (#{message.duration}ms)" 
+    end
+  end
+end
+{% endhighlight %}
+
+<p>
+  You are free to organize this however you want. Decouple publisher/subscriber in different files, chronological or
+  even in different threads.
+</p>
+
+{% highlight ruby %}
+# config/initializers/poor_mans_background_job_subscriber.rb
+
+module ActionController
+  class PMBGJSubscriber < ActiveSupport::Subscriber
+    include Concurrent::Async
+
+    attach_to :action_controller
+
+    def process_action(message)
+      async.background_job(message)
+    end
+
+    def background_job(message)
+      # ...do something expensive with the message in a thread
+      sleep(60)
+    end
+  end
+end
+{% endhighlight %}
+
+<h2>Activesupport::Notifications Is Everywhere Today</h2>
+<p>
+  Second, and you probably already guessed this from the example, what makes this most awesome are the ready made
+  messages that are already published <b>today</b>.
+</p>
+<p>
+  Rails for instance uses <code>ActiveSupport::Notifications</code> to publish close to 50(!) different instrumentation events
+  that include data about your application. Data ranging from the HTTP status code of your requests, over which partials
+  were rendered, to more esoteric measurements like the byte range attempted to be read from your ActiveStorage service.
+  Check the <a href="https://guides.rubyonrails.org/active_support_instrumentation.html">instrumentation guide</a>
+  for all the dirty secrets.
+</p>
+
+<h2>ActiveSupport::Notifications Is Easily Extendible</h2>
+<p>
+  Last but not least, you can not only listen to messages others publish, you can publish messages to yourself.
+</p>
+
+{% highlight ruby %}
+ActiveSupport::Notifications.instrument "cool_thing_happened.my_app", {some: :data} do
+  MyApp.do_cool_thing(true)
+end
+{% endhighlight %}
+
+<p>
+  Okay, you're convinced I hope! Now what do people do with <code>ActiveSupport::Notifications</code> out in the world?
+</p>
+
+<h2>Application Health/Performance Monitoring</h2>
+<p>
+  Ever wondered how your metrics get to Sentry, New Relic, Datadog or Skylight? You guessed it, via <code>ActiveSupport::Notifications</code>.
+</p>
+<p>
+  Now if the main work, publishing tons of messages through a pub-sub architecture, is already done by Rails, surely there are
+  non-SaaS (a.k.a. Software Libre) options to display this data, right? Turns out there are not. While evaluating options for some
+  of my projects (especially Open Build Service) we came across this gap and started to fill it.
+</p>
+<p>
+  How, why and where? Read on in the next part of this series: 
+  <a href="/blog/influxdb-rails.html">Measure twice, cut once: App Performance Monitoring with influxdb-rails</a>
+</p>
+
