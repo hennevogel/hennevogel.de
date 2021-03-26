@@ -13,8 +13,7 @@ description: A blog post about Ruby on Rails instrumentation with ActiveSupport:
 </p>
 <p>  
   Receiving a message, and doing something with it, "just" requires you to subscribe to it. Because the publisher doesn't
-  need to know about the subscribers (it's decoupled), this provides nice opportunities for scale. For instance, the amount
-  of subscribers to an event is just limited by your resources.
+  need to know about the subscribers (as they are decoupled), this provides nice opportunities for organization and scale.
 </p>
 <p>
   Let's explore the joyful shenanigans of this.
@@ -45,10 +44,9 @@ description: A blog post about Ruby on Rails instrumentation with ActiveSupport:
   about the things happening in your controller action. Let's explore this.
 </p>
 <p>
-  If you don't have a Ruby on Rails app at hand, just setup a minimal one with
-</p>
-<p>  
-  <code>rails new --minimal</code>
+  <small>
+    If you don't have a Ruby on Rails app at hand, just setup a minimal one with <code>rails new --minimal</code>
+  </small>
 </p>
 
 <p>
@@ -72,8 +70,8 @@ end
 
 <p>
   Boot the app (<code>rails server</code>), visit <a href="http://127.0.0.0:3000">http://127.0.0.0:3000</a> and you'll
-  see the new log lines. So what? What's the difference to calling <code>Rails.logger</code> in an action or in a callback
-  inside your controller? Why is <code>ActiveSupport::Notifications</code> fabulous?
+  see the new log lines in your development.log. So what? What's the difference to calling <code>Rails.logger</code> in
+  an action or callback inside your controller? Why is <code>ActiveSupport::Notifications</code> fabulous?
 </p>
 
 <h2>ActiveSupport::Notifications Scales</h2>
@@ -138,7 +136,7 @@ end
   for all the dirty secrets.
 </p>
 
-<h2>ActiveSupport::Notifications is easily extendible</h2>
+<h2>ActiveSupport::Notifications Is Easily Extendible</h2>
 <p>
   Last but not least, you can not only listen to messages others publish, you can publish messages to yourself.
 </p>
@@ -153,13 +151,13 @@ end
   Okay, you're convinced I hope! Now what do people do with <code>ActiveSupport::Notifications</code> out in the world?
 </p>
 
-<h2>Application Health/Performance Monitoring (A*M)</h2>
+<h2>Application Health/Performance Monitoring</h2>
 <p>
-  Ever wondered how your metrics get to sentry, new relic, datadog or skylight? You guessed it, via <code>ActiveSupport::Notifications</code>.
+  Ever wondered how your metrics get to Sentry, New Relic, Datadog or Skylight? You guessed it, via <code>ActiveSupport::Notifications</code>.
 </p>
 <p>
   Now if the main work, publishing tons of messages through a pub-sub architecture, is already done by Rails, surely there are
-  non-SaaS (a.k.a. Free Software) options to display this data, right? Turns out there aren't really. While evaluating A*M for some
+  non-SaaS (a.k.a. Software Libre) options to display this data, right? Turns out there are not. While evaluating options for some
   of my projects (especially Open Build Service) we came across this gap and started to fill it.
 </p>
 <p>
