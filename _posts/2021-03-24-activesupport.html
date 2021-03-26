@@ -6,10 +6,10 @@ description: A blog post about Ruby on Rails instrumentation with ActiveSupport:
 ---
 
 <p>
-  One of the lesser known parts of rails core is the ActiveSupport instrumentation framework.
+  One of the lesser known parts of Rails core is the ActiveSupport instrumentation framework.
   <code>ActiveSupport::Notifications</code> includes all the things you need to implement pub-sub in Rails.
   Pub-Sub is a software architecture where you publish (send) a message without being specific about who should
-  receive this message, if anything. Fire and forget.
+  receive it. Fire and forget.
 </p>
 <p>  
   Receiving a message, and doing something with it, "just" requires you to subscribe to it. Because the publisher doesn't
@@ -23,23 +23,19 @@ description: A blog post about Ruby on Rails instrumentation with ActiveSupport:
 <div id="more"></div>
 
 <div class="alert alert-warning">
-  <p>
-    <small>
-      This post is the first part of a three part series about instrumenting your Ruby on Rails app with influxdb-rails.
-      Make sure to check them all out!
-    </small>
-    <ul>
-      <li>
-        ActiveSupport::Notifications is rad! 💘 (this post)
-      </li>
-      <li>
-        <a href="/blog/influxdb-rails.html">Measure twice, cut once: App Performance Monitoring with influxdb-rails</a>
-      </li>
-      <li>
-        <a href="/blog/beyond-performance.html">Let's build Software Libre APM together</a>
-      </li>
-    </ul>
-  </p>
+  This post is the first part of a three part series about instrumenting your Ruby on Rails app with influxdb-rails.
+  Make sure to check them all out!
+  <ul>
+    <li>
+      ActiveSupport::Notifications is rad! (this post)
+    </li>
+    <li>
+      <a href="/blog/influxdb-rails.html">Measure twice, cut once: App Performance Monitoring with influxdb-rails</a>
+    </li>
+    <li>
+      <a href="/blog/apm-but-together.html">Let's build Software Libre APM together</a>
+    </li>
+  </ul>
 </div>
 
 <h2>Publish &amp; Subscribe</h2>
