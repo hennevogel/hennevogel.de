@@ -1,14 +1,14 @@
 ---
 image: fleur-dQf7RZhMOJU-unsplash.jpg 
 image_license: Photo by Fleur on <a href="https://unsplash.com/photos/dQf7RZhMOJU">Unsplash</a>
-title: 'Measure twice, cut once: Application Performance Monitoring'
-description: A blog post about the Ruby on Rails APM with influxdb-rails
+title: 'Measure twice, cut once: App Performance Monitoring with influxdb-rails'
+description: A blog post about App Performance Monitoring with influxdb-rails
 ---
 
 <p>
   Now that we learned how truly magnificent <code>ActiveSupport::Notifications</code> is in the previous post,
   let's explore a RubyGem <a href="https://bruckmayer.net/">Chris</a>, others and me have built around this: influxdb-rails.
-  Together with some other awesome Free Software, it will help you to deep dive into and understand your Ruby on Rails
+  Together with some more awesome Free Software, it will help you to deep dive into and understand your Ruby on Rails
   application performance.
 </p>
 
@@ -17,18 +17,18 @@ description: A blog post about the Ruby on Rails APM with influxdb-rails
 <div class="alert alert-warning">
   <p>
     <small>
-      This post ist part two of a three part series about instrumenting your Ruby on Rails app with Active Support Instrumentation
-      and influxdb-rails. Make sure to check them all out!
+      This post ist part two of a three part series about monitoring your Ruby on Rails app with influxdb-rails.
+      Make sure to check them all out!
     </small>
     <ul>
       <li>
         <a href="/blog/activesupport.html">ActiveSupport::Notifications is rad! 💘</a>
       </li>
       <li>
-        Measure twice, cut once: Application Performance Monitoring (this post)
+        Measure twice, cut once: App Performance Monitoring with influxdb-rails (this post)
       </li>
       <li>
-        <a href="/blog/beyond-performance.html">Beyond Performance with influxdb-rails</a>
+        <a href="/blog/beyond-performance.html">Let's build Software Libre APM together</a>
       </li>
     </ul>
   </p>
@@ -182,18 +182,18 @@ Completed 200 OK in 5ms (Views: 4.1ms | ActiveRecord: 0.1ms | Allocations: 3514)
   Let's collaborate! That is why we have build a couple of dashboards you can <a href="http://127.0.0.0:4000/dashboard/import">import</a>
   into your Grafana. Just copy and paste the URLs...
   <ul>
-    <li><a href="https://grafana.com/grafana/dashboards/10428/" rel="nofollow">Ruby On Rails Performance Overview</a></li>
-    <li>Performance insights into individual requests, see <a href="https://grafana.com/grafana/dashboards/10429" rel="nofollow">Ruby On Rails Performance per Request</a></li>
-    <li>Performance of individual actions, see <a href="https://grafana.com/grafana/dashboards/11031" rel="nofollow">Ruby On Rails Performance per Action</a></li>
-    <li><a href="https://grafana.com/grafana/dashboards/14115" rel="nofollow">Ruby On Rails Health Overview</a></li>
-    <li><a href="https://grafana.com/grafana/dashboards/14116" rel="nofollow">Ruby on Rails ActiveJob Overview</a></li>
-    <li><a href="https://grafana.com/grafana/dashboards/14118" rel="nofollow">Ruby on Rails Slowlog by Request</a></li>
-    <li><a href="https://grafana.com/grafana/dashboards/14117" rel="nofollow">Ruby on Rails Slowlog by Action</a></li>
-    <li><a href="https://grafana.com/grafana/dashboards/14119" rel="nofollow">Ruby on Rails Slowlog by SQL</a></li>
+    <li>Ruby On Rails Performance Overview: <a href="https://grafana.com/grafana/dashboards/10428/" rel="nofollow">Ruby On Rails Performance Overview</a></li>
+    <li>Performance insights into individual requests: <a href="https://grafana.com/grafana/dashboards/10429" rel="nofollow">Ruby On Rails Performance per Request</a></li>
+    <li>Performance of individual actions: <a href="https://grafana.com/grafana/dashboards/11031" rel="nofollow">Ruby On Rails Performance per Action</a></li>
+    <li>HTTP Request Health: <a href="https://grafana.com/grafana/dashboards/14115" rel="nofollow">Ruby On Rails Health Overview</a></li>
+    <li>ActiveJob Insights: <a href="https://grafana.com/grafana/dashboards/14116" rel="nofollow">Ruby on Rails ActiveJob Overview</a></li>
+    <li>A list of the slowest requests: <a href="https://grafana.com/grafana/dashboards/14118" rel="nofollow">Ruby on Rails Slowlog by Request</a></li>
+    <li>A list of the slowest actions: <a href="https://grafana.com/grafana/dashboards/14117" rel="nofollow">Ruby on Rails Slowlog by Action</a></li>
+    <li>A list of the slowest queries: <a href="https://grafana.com/grafana/dashboards/14119" rel="nofollow">Ruby on Rails Slowlog by SQL</a></li>
   </ul>
 </p>
 
 <p>
-  Play with them a little, I will tell you about all the nitty gritty details in the next post of this series:
-  <a href="/blog/beyond-performance.html">Beyond Performance with influxdb-rails</a>
+  Play a little, I will tell you about all the nitty gritty details in the last post of this series:
+  <a href="/blog/beyond-performance.html">Let's build Software Libre APM together</a>
 </p>
